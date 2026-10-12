@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #0b0d10;
+    color: #e2e8f0;
+  }
+}
+
+.font-racing {
+  font-family: 'Chakra Petch', sans-serif;
+}
+
+.font-telemetry {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Subtle carbon fiber weave background effect */
+.carbon-pattern {
+  background-color: #0d1015;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0),
+    linear-gradient(45deg, #11151c 25%, transparent 25%, transparent 75%, #11151c 75%, #11151c),
+    linear-gradient(45deg, #11151c 25%, #0d1015 25%, #0d1015 75%, #11151c 75%, #11151c);
+  background-size: 24px 24px, 8px 8px, 8px 8px;
+  background-position: 0 0, 0 0, 4px 4px;
+}
+
+.racing-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.f1-red-glow {
+  box-shadow: 0 0 25px -5px rgba(225, 6, 0, 0.35);
+}
+
+.f1-red-border-glow {
+  border-color: #e10600;
+  box-shadow: 0 0 12px rgba(225, 6, 0, 0.25);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0d10;
+}
+::-webkit-scrollbar-thumb {
+  background: #272d37;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e10600;
+}
