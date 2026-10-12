@@ -1,5 +1,6 @@
 import { Search, Bookmark, Flag, Sparkles, X, ChevronRight } from 'lucide-react';
 import { Category } from '../types';
+import { CATEGORY_TO_SLUG } from '../router';
 
 interface NavbarProps {
   categories: Category[];
@@ -8,8 +9,7 @@ interface NavbarProps {
   searchQuery: string;
   onSearchChange: (q: string) => void;
   savedCount: number;
-  onOpenBookmarks: () => void;
-  onOpenRaceInfo: () => void;
+  onNavigate: (to: string) => void;
 }
 
 export default function Navbar({
@@ -19,8 +19,7 @@ export default function Navbar({
   searchQuery,
   onSearchChange,
   savedCount,
-  onOpenBookmarks,
-  onOpenRaceInfo
+  onNavigate
 }: NavbarProps) {
   return (
     <header className="sticky top-0 z-40 bg-[#0d1015]/95 backdrop-blur-md border-b border-[#1f2635] shadow-lg">
@@ -40,7 +39,7 @@ export default function Navbar({
 
           <div className="flex items-center gap-3">
             <button
-              onClick={onOpenRaceInfo}
+              onClick={() => onNavigate('/circuit-specs')}
               className="hover:text-white transition-colors flex items-center gap-1 text-slate-400 cursor-pointer"
             >
               <Flag className="w-3 h-3 text-[#e10600]" />
@@ -54,14 +53,17 @@ export default function Navbar({
       {/* Main Navbar Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
         <div className="flex items-center justify-between gap-4">
-          {/* Logo & Brand */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#e10600] to-[#950000] flex items-center justify-center shadow-lg shadow-red-950/40 border border-red-500/30">
+          {/* Logo & Brand (Clickable link to /) */}
+          <button
+            onClick={() => onNavigate('/')}
+            className="flex items-center gap-3 text-left group cursor-pointer"
+          >
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#e10600] to-[#950000] flex items-center justify-center shadow-lg shadow-red-950/40 border border-red-500/30 group-hover:scale-105 transition-transform">
               <span className="font-racing font-extrabold text-xl text-white tracking-tighter italic">APX</span>
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-racing font-bold text-lg md:text-xl text-white tracking-wider uppercase">
+                <span className="font-racing font-bold text-lg md:text-xl text-white tracking-wider uppercase group-hover:text-[#ff3833] transition-colors">
                   Apex Grand Prix
                 </span>
                 <span className="text-[10px] font-racing uppercase tracking-widest text-[#e10600] font-bold px-1.5 py-0.5 rounded bg-red-950/50 border border-red-700/40">
@@ -72,7 +74,7 @@ export default function Navbar({
                 Telemetry · Aerodynamics · Pit Lane Strategy
               </p>
             </div>
-          </div>
+          </button>
 
           {/* Search bar */}
           <div className="flex-1 max-w-md hidden sm:block relative">
@@ -98,9 +100,9 @@ export default function Navbar({
 
           {/* Action buttons */}
           <div className="flex items-center gap-2">
-            {/* Bookmarks drawer button */}
+            {/* Bookmarks link to /saved */}
             <button
-              onClick={onOpenBookmarks}
+              onClick={() => onNavigate('/saved')}
               className="flex items-center gap-2 py-2 px-3 rounded-lg bg-[#141822] hover:bg-[#1c2230] border border-[#232a3a] text-xs font-mono text-slate-300 hover:text-white transition-all cursor-pointer"
               title="Saved Articles"
             >
@@ -135,17 +137,21 @@ export default function Navbar({
           )}
         </div>
 
-        {/* Category Filter Bar (Functional segmented buttons following Zero-Pill discipline) */}
+        {/* Category Filter Bar (Functional buttons mapped to unique category URLs) */}
         <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-[#1a202c] overflow-x-auto scrollbar-none">
           <span className="text-[11px] font-racing uppercase tracking-wider text-slate-500 font-bold mr-2 hidden md:inline">
             Filters:
           </span>
           {categories.map((cat) => {
             const isSelected = selectedCategory === cat;
+            const targetUrl = cat === 'All' ? '/' : `/category/${CATEGORY_TO_SLUG[cat]}`;
             return (
               <button
                 key={cat}
-                onClick={() => onSelectCategory(cat)}
+                onClick={() => {
+                  onSelectCategory(cat);
+                  onNavigate(targetUrl);
+                }}
                 className={`py-1.5 px-3.5 rounded-lg text-xs font-racing font-bold tracking-wider uppercase transition-all whitespace-nowrap cursor-pointer ${
                   isSelected
                     ? 'bg-[#e10600] text-white shadow-md shadow-red-950/40'

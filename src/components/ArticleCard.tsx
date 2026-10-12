@@ -6,13 +6,15 @@ interface ArticleCardProps {
   onSelect: (article: Article) => void;
   isBookmarked: boolean;
   onToggleBookmark: (articleId: string, e: React.MouseEvent) => void;
+  href?: string;
 }
 
 export default function ArticleCard({
   article,
   onSelect,
   isBookmarked,
-  onToggleBookmark
+  onToggleBookmark,
+  href
 }: ArticleCardProps) {
   // Category specific accent color
   const categoryColor =
