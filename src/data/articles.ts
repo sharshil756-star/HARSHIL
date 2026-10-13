@@ -17,7 +17,7 @@ export const ARTICLES: Article[] = [
       avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'
     },
     heroImageUrl: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Formula 1 car running on circuit with aerodynamic flow visualization paint on sidepod and floor edge',
+    imageAlt: 'F1 car flow-vis aero test',
     featured: true,
     excerpt: 'Friday practice isn’t about sheer headline lap times. It is an exacting forensic exercise in ground-effect floor pressure mapping, ride height sealing, and measuring long-run tyre thermal degradation curves across Pirelli’s C2, C3, and C4 compounds.',
     tags: ['Aerodynamics', 'Tyre Degradation', 'Practice Sessions', 'Ground Effect', 'Flow-Vis'],
@@ -78,7 +78,7 @@ This stark contrast virtually confirms that the Soft tyre will remain an exclusi
       avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80'
     },
     heroImageUrl: 'https://images.unsplash.com/photo-1508974239320-0a029497e820?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Formula 1 telemetry dashboard screen showing overlaid velocity, throttle and braking traces',
+    imageAlt: 'F1 telemetry velocity traces',
     featured: false,
     excerpt: 'The Saturday morning 60-minute window is the final opportunity to lock in suspension geometry, damper stiffness, and differential ramp angles before Parc Fermé regulations permanently freeze car specifications.',
     tags: ['FP3', 'Telemetry', 'Set-up', 'Parc Ferme', 'Differential'],
@@ -126,7 +126,7 @@ With 120 kW (160 bhp) of electric boost deployed without clipping down the 1.1 k
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80'
     },
     heroImageUrl: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Formula 1 car attacking apex kerbing at maximum velocity during qualifying shootout',
+    imageAlt: 'F1 car apex qualifying lap',
     featured: true,
     excerpt: 'Anatomy of the ultimate qualifying battle: how tyre preparation on the out-lap, micro-sector apex speeds, and millimeter precision over track limits decided pole position on the edge of the razor.',
     tags: ['Qualifying', 'Pole Position', 'Sector Splits', 'Flying Lap', 'Track Limits'],
@@ -174,7 +174,7 @@ The decider came in the final acceleration zone out of the Parabolica. By waitin
       avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80'
     },
     heroImageUrl: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Formula 1 pit wall timing screens displaying tyre degradation charts and pit delta strategies',
+    imageAlt: 'F1 pit wall strategy monitors',
     featured: false,
     excerpt: 'Before 20 cars assemble on the grid, race strategists run billions of Monte Carlo simulations to calculate the exact lap window where pitting early unleashes fresh tyre pace to leapfrog rivals.',
     tags: ['Strategy', 'Undercut', 'Overcut', 'Pit Stop Delta', 'Tyre Degradation'],
@@ -220,7 +220,7 @@ However, the **Overcut** becomes devastating when tyre warm-up is slow or graini
       avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'
     },
     heroImageUrl: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Formula 1 grid start with smoke and 20 cars funneling at high speed toward Turn 1',
+    imageAlt: 'F1 Turn 1 grid start',
     featured: false,
     excerpt: 'The most dangerous, adrenaline-soaked 600 meters in world sport: dissecting the launch physics of human reaction times, clutch paddles, tyre wheelspin, and 300 km/h heavy braking into Turn 1.',
     tags: ['Race Start', 'Launch Control', 'Reaction Time', 'Turn 1', 'Braking Physics'],
@@ -268,7 +268,7 @@ With cold brakes and 20 cars jostling within centimeters of each other, aerodyna
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80'
     },
     heroImageUrl: 'https://images.unsplash.com/photo-1541348263662-e0c8de4259ba?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Formula 1 pit crew swarming car during rapid tyre change with wheel guns spinning',
+    imageAlt: 'F1 pit crew 1.9s tyre change',
     featured: true,
     excerpt: 'Inside the synchronized choreography of the world’s fastest pit crews: wheel guns, quick-release front jacks, automated traffic lights, and why human reaction time is pushed to its absolute limits.',
     tags: ['Pit Stop', 'Pit Crew', 'Wheel Gun', 'Choreography', 'Biomechanics'],
@@ -319,7 +319,7 @@ Despite these restrictions, elite crews routinely execute stationary stops betwe
       avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80'
     },
     heroImageUrl: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Aston Martin Safety Car leading pack of Formula 1 cars around circuit under safety car conditions',
+    imageAlt: 'F1 Safety Car leading pack',
     featured: false,
     excerpt: 'When yellow flags fly and race control deploys the Safety Car or triggers VSC deltas, the entire competitive hierarchy can invert in seconds. Here is the mathematical reality behind the "cheap pit stop".',
     tags: ['Safety Car', 'Virtual Safety Car', 'Strategy', 'Pit Window', 'Restart Tactics'],
@@ -367,7 +367,7 @@ Savvy leaders back the pack into a crawl at the final hairpin, compress the trai
       avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'
     },
     heroImageUrl: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Multiple Formula 1 cars drafting nose-to-tail down main straight with DRS wings open',
+    imageAlt: 'F1 DRS train straight slipstream',
     featured: false,
     excerpt: 'Why do faster cars get trapped behind slower machinery for 20 laps? We examine the fluid dynamics of DRS flap stalls, dirty air thermal degradation, and tactical ERS battery clipping.',
     tags: ['DRS', 'ERS Battery', 'Overtaking', 'Aerodynamics', 'Slipstream'],
@@ -413,7 +413,7 @@ To execute an overtake or defend a position, drivers must "super-charge" their e
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80'
     },
     heroImageUrl: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'Chequered flag waving above Formula 1 car crossing finish line with podium celebrations',
+    imageAlt: 'F1 chequered flag podium finish',
     featured: true,
     excerpt: 'From lights out to the chequered flag, recap how strategic mastery, relentless pace management, and an audacious final-lap fastest lap dash sealed a legendary Grand Prix victory.',
     tags: ['Race Recap', 'Podium', 'Fastest Lap', 'Chequered Flag', 'Victory'],
@@ -456,7 +456,7 @@ Telemetry showed the chaser extracting maximum traction from Turn 7, closing the
       avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'
     },
     heroImageUrl: 'https://images.unsplash.com/photo-1508974239320-0a029497e820?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'FIA technical delegates inspecting Formula 1 floor plank and taking fuel sample in Parc Ferme garage',
+    imageAlt: 'FIA Parc Fermé technical inspection',
     featured: false,
     excerpt: 'The Grand Prix isn’t truly over until the FIA Technical Delegate issues Document 64. Step inside the rigorous post-race scrutineering tests that protect the integrity of Formula 1.',
     tags: ['Scrutineering', 'FIA', 'Parc Ferme', 'Plank Wear', 'Constructors Points'],
