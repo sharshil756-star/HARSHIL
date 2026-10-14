@@ -270,11 +270,12 @@ export default function App() {
                       <img
                         src={heroArticle.heroImageUrl}
                         alt={heroArticle.imageAlt}
+                        referrerPolicy="no-referrer"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90 group-hover:brightness-100"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-[#10141d] via-transparent to-transparent" />
                       <div className="absolute bottom-3 right-3 text-[10px] font-mono bg-black/70 px-2 py-1 rounded text-slate-400">
-                        Aerodynamic Flow Visualization
+                        {heroArticle.sessionCode} Debrief · {heroArticle.category}
                       </div>
                     </div>
                   </div>

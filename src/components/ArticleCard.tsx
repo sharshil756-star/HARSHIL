@@ -36,6 +36,7 @@ export default function ArticleCard({
         <img
           src={article.heroImageUrl}
           alt={article.imageAlt}
+          referrerPolicy="no-referrer"
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 filter brightness-90 group-hover:brightness-100"
           loading="lazy"
         />

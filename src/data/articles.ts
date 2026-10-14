@@ -272,8 +272,8 @@ With cold brakes and 20 cars jostling within centimeters of each other, aerodyna
       role: 'Chief Motorsport Correspondent',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80'
     },
-    heroImageUrl: 'https://images.unsplash.com/photo-1541348263662-e0c8de4259ba?auto=format&fit=crop&w=1200&q=80',
-    imageAlt: 'F1 pit crew 1.9s tyre change',
+    heroImageUrl: '/images/ferrari-pit-stop.jpg',
+    imageAlt: 'Formula 1 pit stop in pit lane with 22 crew mechanics servicing race car',
     featured: true,
     excerpt: 'Inside the synchronized choreography of the world’s fastest pit crews: wheel guns, quick-release front jacks, automated traffic lights, and why human reaction time is pushed to its absolute limits.',
     metaDescription: 'Explore how 22 mechanics execute a sub-2.0 second F1 pit stop using 10,500 RPM pneumatic wheel guns and synchronized choreography.',
