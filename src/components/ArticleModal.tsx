@@ -335,54 +335,93 @@ export default function ArticleModal({
               </div>
             )}
 
-            {/* Article Content Sections */}
+            {/* Article Content Sections - Question & Answer Format for AEO */}
             <div className={`space-y-8 ${fontSize === 'large' ? 'text-base sm:text-lg leading-relaxed' : 'text-sm sm:text-base leading-relaxed'} text-slate-300 font-sans`}>
-              {article.sections.map((section, idx) => (
-                <section key={idx} className="space-y-4">
-                  <h2 className="font-racing font-bold text-xl sm:text-2xl text-white tracking-wide pt-2 border-t border-[#1c2331]">
-                    {section.title}
-                  </h2>
-
-                  {/* Paragraph with whitespace breaks preserved */}
-                  <div className="space-y-3">
-                    {section.content.split('\n\n').map((paragraph, pIdx) => (
-                      <p key={pIdx} className="leading-relaxed text-slate-300">
-                        {paragraph}
-                      </p>
-                    ))}
-                  </div>
-
-                  {/* Key Metric highlight */}
-                  {section.keyMetric && (
-                    <div className="bg-[#121722] border-l-2 border-[#00d2be] p-4 rounded-r-lg my-4 flex items-center justify-between">
-                      <div>
-                        <span className="text-xs font-mono text-[#00d2be] uppercase tracking-wider block font-bold">
-                          Key Sensor Metric
-                        </span>
-                        <span className="text-xs font-mono text-slate-400 mt-0.5 block">
-                          {section.keyMetric.description}
-                        </span>
-                      </div>
-                      <div className="text-2xl font-bold font-telemetry text-white shrink-0 ml-4">
-                        {section.keyMetric.stat}
-                      </div>
+              {article.sections.map((section, idx) => {
+                const paragraphs = section.content.split('\n\n');
+                return (
+                  <section key={idx} className="space-y-4">
+                    <div className="flex items-center gap-2 pt-3 border-t border-[#1c2331]">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-racing font-bold tracking-wider uppercase bg-[#e10600]/15 text-[#ff4d4d] border border-[#e10600]/30 flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#e10600] animate-pulse" />
+                        AEO Q&A Section {idx + 1}
+                      </span>
                     </div>
-                  )}
 
-                  {/* Highlight callout box */}
-                  {section.highlightBox && (
-                    <div className="bg-[#141924] border border-[#273247] p-4 rounded-xl my-4">
-                      <div className="text-xs font-racing font-bold text-[#f59e0b] uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5" />
-                        {section.highlightBox.title}
-                      </div>
-                      <p className="text-xs font-mono text-slate-300 leading-relaxed">
-                        {section.highlightBox.body}
-                      </p>
+                    <h2 className="font-racing font-bold text-xl sm:text-2xl text-white tracking-wide leading-snug">
+                      {section.title}
+                    </h2>
+
+                    {/* Paragraphs with Q&A Direct Answer styling */}
+                    <div className="space-y-3">
+                      {paragraphs.map((paragraph, pIdx) => {
+                        const isAnswer = paragraph.startsWith('**Answer:**') || paragraph.startsWith('Answer:');
+                        const cleanText = paragraph.replace(/^\*\*(Answer:?)\*\*\s*/i, '').replace(/^Answer:\s*/i, '');
+
+                        const parts = cleanText.split(/(\*\*[^*]+\*\*)/g);
+                        const formatted = parts.map((part, pI) => {
+                          if (part.startsWith('**') && part.endsWith('**')) {
+                            return <strong key={pI} className="text-white font-semibold">{part.slice(2, -2)}</strong>;
+                          }
+                          return part;
+                        });
+
+                        if (isAnswer) {
+                          return (
+                            <div key={pIdx} className="bg-[#10141f] border-l-4 border-[#e10600] p-4 rounded-r-xl my-3 shadow-md border-t border-b border-r border-[#1e2638]">
+                              <div className="flex items-center gap-2 mb-1.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#e10600] animate-pulse" />
+                                <span className="text-[10px] font-racing font-bold tracking-wider uppercase text-[#ff4d4d]">
+                                  Direct Answer · AEO Summary
+                                </span>
+                              </div>
+                              <p className="leading-relaxed text-slate-100 font-medium text-sm sm:text-base">
+                                {formatted}
+                              </p>
+                            </div>
+                          );
+                        }
+
+                        return (
+                          <p key={pIdx} className="leading-relaxed text-slate-300">
+                            {formatted}
+                          </p>
+                        );
+                      })}
                     </div>
-                  )}
-                </section>
-              ))}
+
+                    {/* Key Metric highlight */}
+                    {section.keyMetric && (
+                      <div className="bg-[#121722] border-l-2 border-[#00d2be] p-4 rounded-r-lg my-4 flex items-center justify-between">
+                        <div>
+                          <span className="text-xs font-mono text-[#00d2be] uppercase tracking-wider block font-bold">
+                            Key Sensor Metric
+                          </span>
+                          <span className="text-xs font-mono text-slate-400 mt-0.5 block">
+                            {section.keyMetric.description}
+                          </span>
+                        </div>
+                        <div className="text-2xl font-bold font-telemetry text-white shrink-0 ml-4">
+                          {section.keyMetric.stat}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Highlight callout box */}
+                    {section.highlightBox && (
+                      <div className="bg-[#141924] border border-[#273247] p-4 rounded-xl my-4">
+                        <div className="text-xs font-racing font-bold text-[#f59e0b] uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                          <Sparkles className="w-3.5 h-3.5" />
+                          {section.highlightBox.title}
+                        </div>
+                        <p className="text-xs font-mono text-slate-300 leading-relaxed">
+                          {section.highlightBox.body}
+                        </p>
+                      </div>
+                    )}
+                  </section>
+                );
+              })}
             </div>
 
             {/* Embedded Interactive Tools (Integrated directly into reader) */}

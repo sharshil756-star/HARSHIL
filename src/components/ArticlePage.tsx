@@ -69,6 +69,40 @@ export default function ArticlePage({
     }
   };
 
+  // Dynamic AEO JSON-LD Schema.org FAQPage structured data
+  useEffect(() => {
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': article.sections.map((section) => {
+        const firstParagraph = section.content.split('\n\n')[0] || '';
+        const cleanAnswer = firstParagraph.replace(/^\*\*(Answer:?)\*\*\s*/i, '').replace(/^Answer:\s*/i, '');
+        return {
+          '@type': 'Question',
+          'name': section.title,
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': cleanAnswer
+          }
+        };
+      })
+    };
+
+    let scriptEl = document.getElementById('aeo-faq-schema') as HTMLScriptElement | null;
+    if (!scriptEl) {
+      scriptEl = document.createElement('script');
+      scriptEl.id = 'aeo-faq-schema';
+      scriptEl.type = 'application/ld+json';
+      document.head.appendChild(scriptEl);
+    }
+    scriptEl.textContent = JSON.stringify(faqSchema);
+
+    return () => {
+      const el = document.getElementById('aeo-faq-schema');
+      if (el) el.remove();
+    };
+  }, [article]);
+
   const categorySlug = CATEGORY_TO_SLUG[article.category] || 'tech';
 
   return (
@@ -85,19 +119,27 @@ export default function ArticlePage({
       <nav className="bg-[#0f131a] border-b border-[#1c2433] py-3 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
           <div className="flex items-center gap-1.5 text-slate-400">
-            <button
-              onClick={() => onNavigate('/')}
+            <a
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('/');
+              }}
               className="hover:text-white transition-colors cursor-pointer flex items-center gap-1"
             >
               <span>Race Hub</span>
-            </button>
+            </a>
             <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
-            <button
-              onClick={() => onNavigate(`/category/${categorySlug}`)}
+            <a
+              href={`/category/${categorySlug}`}
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate(`/category/${categorySlug}`);
+              }}
               className="hover:text-white text-[#e10600] font-bold uppercase transition-colors cursor-pointer"
             >
-              {article.category}
-            </button>
+              {article.category} Debriefs
+            </a>
             <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
             <span className="text-slate-300 truncate max-w-[200px] sm:max-w-none">
               Session {article.sessionCode}
@@ -308,50 +350,90 @@ export default function ArticlePage({
           </div>
         )}
 
-        {/* Content Sections */}
+        {/* Content Sections - Question & Answer Format for AEO */}
         <div className={`space-y-8 ${fontSize === 'large' ? 'text-lg leading-relaxed' : 'text-base leading-relaxed'} text-slate-300 font-sans`}>
-          {article.sections.map((section, idx) => (
-            <section key={idx} className="space-y-4">
-              <h2 className="font-racing font-bold text-2xl text-white tracking-wide pt-4 border-t border-[#1c2331]">
-                {section.title}
-              </h2>
-
-              <div className="space-y-3">
-                {section.content.split('\n\n').map((paragraph, pIdx) => (
-                  <p key={pIdx} className="leading-relaxed text-slate-300">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-
-              {section.keyMetric && (
-                <div className="bg-[#121722] border-l-2 border-[#00d2be] p-4 rounded-r-lg my-4 flex items-center justify-between">
-                  <div>
-                    <span className="text-xs font-mono text-[#00d2be] uppercase tracking-wider block font-bold">
-                      Key Sensor Metric
-                    </span>
-                    <span className="text-xs font-mono text-slate-400 mt-0.5 block">
-                      {section.keyMetric.description}
-                    </span>
-                  </div>
-                  <div className="text-2xl font-bold font-telemetry text-white shrink-0 ml-4">
-                    {section.keyMetric.stat}
-                  </div>
+          {article.sections.map((section, idx) => {
+            const paragraphs = section.content.split('\n\n');
+            return (
+              <section key={idx} className="space-y-4" itemScope itemType="https://schema.org/Question">
+                <div className="flex items-center gap-2 pt-5 border-t border-[#1c2331]">
+                  <span className="px-2.5 py-0.5 rounded text-[11px] font-racing font-bold tracking-wider uppercase bg-[#e10600]/15 text-[#ff4d4d] border border-[#e10600]/30 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#e10600] animate-pulse" />
+                    AEO Q&A Section {idx + 1}
+                  </span>
                 </div>
-              )}
 
-              {section.highlightBox && (
-                <div className="bg-[#141924] border border-[#273247] p-4 rounded-xl my-4">
-                  <div className="text-xs font-racing font-bold text-[#f59e0b] uppercase tracking-wider mb-1">
-                    {section.highlightBox.title}
-                  </div>
-                  <p className="text-xs font-mono text-slate-300 leading-relaxed">
-                    {section.highlightBox.body}
-                  </p>
+                <h2 itemProp="name" className="font-racing font-bold text-xl sm:text-2xl text-white tracking-wide leading-snug">
+                  {section.title}
+                </h2>
+
+                <div className="space-y-3" itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
+                  {paragraphs.map((paragraph, pIdx) => {
+                    const isAnswer = paragraph.startsWith('**Answer:**') || paragraph.startsWith('Answer:');
+                    const cleanText = paragraph.replace(/^\*\*(Answer:?)\*\*\s*/i, '').replace(/^Answer:\s*/i, '');
+
+                    // Format bold markdown **text**
+                    const parts = cleanText.split(/(\*\*[^*]+\*\*)/g);
+                    const formatted = parts.map((part, pI) => {
+                      if (part.startsWith('**') && part.endsWith('**')) {
+                        return <strong key={pI} className="text-white font-semibold">{part.slice(2, -2)}</strong>;
+                      }
+                      return part;
+                    });
+
+                    if (isAnswer) {
+                      return (
+                        <div key={pIdx} className="bg-[#10141f] border-l-4 border-[#e10600] p-4 sm:p-5 rounded-r-xl my-3 shadow-md border-t border-b border-r border-[#1e2638]">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#e10600] animate-pulse" />
+                            <span className="text-[11px] font-racing font-bold tracking-wider uppercase text-[#ff4d4d]">
+                              Direct Answer · AEO Summary
+                            </span>
+                          </div>
+                          <p itemProp="text" className="leading-relaxed text-slate-100 font-medium text-base sm:text-lg">
+                            {formatted}
+                          </p>
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <p key={pIdx} className="leading-relaxed text-slate-300">
+                        {formatted}
+                      </p>
+                    );
+                  })}
                 </div>
-              )}
-            </section>
-          ))}
+
+                {section.keyMetric && (
+                  <div className="bg-[#121722] border-l-2 border-[#00d2be] p-4 rounded-r-lg my-4 flex items-center justify-between">
+                    <div>
+                      <span className="text-xs font-mono text-[#00d2be] uppercase tracking-wider block font-bold">
+                        Key Sensor Metric
+                      </span>
+                      <span className="text-xs font-mono text-slate-400 mt-0.5 block">
+                        {section.keyMetric.description}
+                      </span>
+                    </div>
+                    <div className="text-2xl font-bold font-telemetry text-white shrink-0 ml-4">
+                      {section.keyMetric.stat}
+                    </div>
+                  </div>
+                )}
+
+                {section.highlightBox && (
+                  <div className="bg-[#141924] border border-[#273247] p-4 rounded-xl my-4">
+                    <div className="text-xs font-racing font-bold text-[#f59e0b] uppercase tracking-wider mb-1">
+                      {section.highlightBox.title}
+                    </div>
+                    <p className="text-xs font-mono text-slate-300 leading-relaxed">
+                      {section.highlightBox.body}
+                    </p>
+                  </div>
+                )}
+              </section>
+            );
+          })}
         </div>
 
         {/* Integrated Interactive Lab */}
@@ -426,39 +508,47 @@ export default function ArticlePage({
         {/* Next / Previous Article Permalinks */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-[#222a3a]">
           {prevArticle ? (
-            <button
-              onClick={() => onNavigate(`/article/${prevArticle.slug}`)}
-              className="flex items-center gap-3 p-4 rounded-xl bg-[#131722] hover:bg-[#1a202d] border border-[#202839] text-left transition-all group cursor-pointer"
+            <a
+              href={`/article/${prevArticle.slug}`}
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate(`/article/${prevArticle.slug}`);
+              }}
+              className="flex items-center gap-3 p-4 rounded-xl bg-[#131722] hover:bg-[#1a202d] border border-[#202839] text-left transition-all group cursor-pointer focus:outline-none"
             >
-              <ArrowLeft className="w-5 h-5 text-[#e10600] group-hover:-translate-x-1 transition-transform shrink-0" />
+              <ArrowLeft className="w-5 h-5 text-[#e10600] group-hover:-translate-x-1 transition-transform shrink-0" aria-hidden="true" />
               <div className="overflow-hidden">
                 <span className="text-[10px] font-mono text-slate-500 block uppercase">
-                  Session {prevArticle.sessionCode}
+                  Previous: Session {prevArticle.sessionCode}
                 </span>
                 <span className="text-xs font-racing font-bold text-white truncate block">
                   {prevArticle.title}
                 </span>
               </div>
-            </button>
+            </a>
           ) : (
             <div />
           )}
 
           {nextArticle && (
-            <button
-              onClick={() => onNavigate(`/article/${nextArticle.slug}`)}
-              className="flex items-center justify-between p-4 rounded-xl bg-[#131722] hover:bg-[#1a202d] border border-[#202839] text-right transition-all group cursor-pointer"
+            <a
+              href={`/article/${nextArticle.slug}`}
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate(`/article/${nextArticle.slug}`);
+              }}
+              className="flex items-center justify-between p-4 rounded-xl bg-[#131722] hover:bg-[#1a202d] border border-[#202839] text-right transition-all group cursor-pointer focus:outline-none"
             >
               <div className="overflow-hidden">
                 <span className="text-[10px] font-mono text-slate-500 block uppercase">
-                  Session {nextArticle.sessionCode}
+                  Next: Session {nextArticle.sessionCode}
                 </span>
                 <span className="text-xs font-racing font-bold text-white truncate block">
                   {nextArticle.title}
                 </span>
               </div>
-              <ArrowRight className="w-5 h-5 text-[#e10600] group-hover:translate-x-1 transition-transform shrink-0 ml-3" />
-            </button>
+              <ArrowRight className="w-5 h-5 text-[#e10600] group-hover:translate-x-1 transition-transform shrink-0 ml-3" aria-hidden="true" />
+            </a>
           )}
         </div>
       </div>

@@ -356,23 +356,35 @@ export default function App() {
                   <div className="flex items-center gap-2">
                     <Compass className="w-5 h-5 text-[#e10600]" />
                     <h2 className="font-racing font-bold text-xl md:text-2xl text-white uppercase tracking-wider">
-                      Interactive Paddock Tooling Suite
+                      How Do Engineers Simulate Race Telemetry, Strategy, and Pit Stops?
                     </h2>
                   </div>
 
                   <div className="flex items-center gap-2 text-xs font-mono">
-                    <button
-                      onClick={() => navigate('/tools/telemetry')}
-                      className="text-slate-400 hover:text-white underline cursor-pointer"
+                    <a
+                      href="/tools/telemetry"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        navigate('/tools/telemetry');
+                      }}
+                      className="text-slate-400 hover:text-white underline cursor-pointer focus:outline-none"
                     >
-                      Open Dedicated Labs →
-                    </button>
+                      Open Dedicated Simulation Labs →
+                    </a>
                   </div>
                 </div>
 
-                <p className="text-xs font-mono text-slate-400 mb-6 max-w-2xl leading-relaxed">
-                  Test the mathematical and biomechanical realities of Formula 1 with individual standalone simulators.
-                </p>
+                <div className="bg-[#10141f] border-l-4 border-[#e10600] p-4 rounded-r-xl mb-6 max-w-3xl border-t border-b border-r border-[#1a2333]">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#e10600] animate-pulse" />
+                    <span className="text-[11px] font-racing font-bold tracking-wider uppercase text-[#ff4d4d]">
+                      Direct Answer · AEO Summary
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm font-mono text-slate-200 leading-relaxed">
+                    Formula 1 teams simulate race telemetry, pit stop undercut windows, and biomechanical crew reaction times using 300+ live sensors, high-fidelity kinematic models, and sub-2.0-second pneumatic gun training. Explore the three interactive simulation modules below:
+                  </p>
+                </div>
 
                 <div className="space-y-8">
                   <TelemetryWidget />
