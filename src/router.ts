@@ -98,7 +98,7 @@ export function updatePageSeo(route: RouteType) {
   const canonicalUrl = origin + window.location.pathname;
 
   let title = 'Apex Grand Prix: F1 Race Weekend Hub';
-  let description = 'Comprehensive Formula 1 race weekend engineering breakdowns, telemetry analyses, strategy debriefs, and Grand Prix paddock coverage.';
+  let description = 'Explore Formula 1 engineering breakdowns, live telemetry analyses, pit stop strategies, and paddock debriefs across the entire Grand Prix race weekend.';
   let ogType = 'website';
   let image = origin + '/og-banner.jpg';
   let jsonLd: object = {
@@ -115,7 +115,7 @@ export function updatePageSeo(route: RouteType) {
   if (route.name === 'article') {
     const art = route.article;
     title = `${art.title} | Apex Grand Prix F1 Hub`;
-    description = art.excerpt.slice(0, 155);
+    description = art.metaDescription;
     ogType = 'article';
     image = art.heroImageUrl;
     jsonLd = {
@@ -134,26 +134,38 @@ export function updatePageSeo(route: RouteType) {
         '@type': 'Organization',
         'name': 'Apex Grand Prix'
       },
-      'description': art.excerpt,
+      'description': art.metaDescription,
       'articleBody': art.sections.map(s => `${s.title}: ${s.content}`).join(' ')
     };
   } else if (route.name === 'category') {
     title = `${route.category} Engineering & Debriefs | Apex Grand Prix`;
-    description = `In-depth Formula 1 ${route.category} analysis, telemetry traces, and race weekend data breakdowns.`;
+    const categoryDescriptions: Record<Category, string> = {
+      'All': 'Explore Formula 1 engineering breakdowns, live telemetry analyses, pit stop strategies, and paddock debriefs across the entire Grand Prix race weekend.',
+      'Race Day': 'Read forensic Formula 1 race day debriefs, launch physics breakdowns, wheel-to-wheel battles, and full Grand Prix chequered flag recaps.',
+      'Tech': 'Explore deep technical F1 analysis covering ground-effect aerodynamics, suspension telemetry traces, power units, and 1.9-second pit stops.',
+      'Strategy': 'Discover Formula 1 race strategy models, pit window transit deltas, undercut calculations, and Virtual Safety Car tactical debriefs.',
+      'Qualifying': 'Analyze Formula 1 qualifying flying lap telemetry, micro-sector time splits, track grip evolution, and pole position shootout anatomy.'
+    };
+    description = categoryDescriptions[route.category] || categoryDescriptions['All'];
   } else if (route.name === 'saved') {
     title = 'Saved Race Debriefs | Apex Grand Prix F1 Hub';
-    description = 'Your personal reading library of Formula 1 technical analyses and Grand Prix race reports.';
+    description = 'Access your personal library of saved Formula 1 race weekend debriefs, telemetry analyses, and pit strategy articles for offline reading.';
   } else if (route.name === 'tool') {
     const toolTitles = {
       'telemetry': 'Telemetry Speed Trace & Pedal Input Analyzer',
       'strategy': 'Interactive Pit Stop Window & Undercut Model',
       'pit-stop': 'Biomechanical 1.9s Pit Stop Reflex Simulator'
     };
+    const toolDescriptions = {
+      'telemetry': 'Analyze live Formula 1 velocity traces, braking markers, and throttle pedal inputs comparing two cars through the 350 km/h Turn 1 braking zone.',
+      'strategy': 'Simulate 53-lap Formula 1 race strategies, compound degradation curves, undercut crossover points, and Virtual Safety Car pit time discounts.',
+      'pit-stop': 'Test your biomechanical reflexes in milliseconds against Formula 1 wheel gunners executing the world-record 1.80-second pit stop.'
+    };
     title = `${toolTitles[route.tool]} | Apex Grand Prix`;
-    description = `Interactive Formula 1 engineering simulation tool: test data, pit windows, and reaction times.`;
+    description = toolDescriptions[route.tool];
   } else if (route.name === 'circuit-specs') {
     title = `${RACE_WEEKEND_INFO.circuitName} Circuit Specifications | Apex Grand Prix`;
-    description = `Track layout, lap records, Pirelli tyre compound allocations, and aero setups for ${RACE_WEEKEND_INFO.grandPrixName}.`;
+    description = 'Review official Autodromo Nazionale Monza circuit specs, 53-lap race distance, Pirelli tyre allocations, track records, and weather telemetry.';
   }
 
   // Apply to document
@@ -169,6 +181,13 @@ export function updatePageSeo(route: RouteType) {
 
   const ogDesc = document.querySelector('meta[property="og:description"]');
   if (ogDesc) ogDesc.setAttribute('content', description);
+
+  // Twitter cards
+  const twTitle = document.querySelector('meta[name="twitter:title"]');
+  if (twTitle) twTitle.setAttribute('content', title);
+
+  const twDesc = document.querySelector('meta[name="twitter:description"]');
+  if (twDesc) twDesc.setAttribute('content', description);
 
   const ogUrl = document.querySelector('meta[property="og:url"]');
   if (ogUrl) {

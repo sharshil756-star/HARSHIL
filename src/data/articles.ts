@@ -20,6 +20,7 @@ export const ARTICLES: Article[] = [
     imageAlt: 'F1 car flow-vis aero test',
     featured: true,
     excerpt: 'Friday practice isn’t about sheer headline lap times. It is an exacting forensic exercise in ground-effect floor pressure mapping, ride height sealing, and measuring long-run tyre thermal degradation curves across Pirelli’s C2, C3, and C4 compounds.',
+    metaDescription: 'Analyze Formula 1 aerodynamics correlation and Pirelli tyre thermal degradation curves across Friday practice sessions at the Monza Grand Prix.',
     tags: ['Aerodynamics', 'Tyre Degradation', 'Practice Sessions', 'Ground Effect', 'Flow-Vis'],
     interactiveType: 'telemetry',
     specs: [
@@ -81,6 +82,7 @@ This stark contrast virtually confirms that the Soft tyre will remain an exclusi
     imageAlt: 'F1 telemetry velocity traces',
     featured: false,
     excerpt: 'The Saturday morning 60-minute window is the final opportunity to lock in suspension geometry, damper stiffness, and differential ramp angles before Parc Fermé regulations permanently freeze car specifications.',
+    metaDescription: 'Discover how F1 race engineers decode telemetry speed traces, heave damper setups, and differential ramp angles ahead of Saturday qualifying.',
     tags: ['FP3', 'Telemetry', 'Set-up', 'Parc Ferme', 'Differential'],
     interactiveType: 'telemetry',
     specs: [
@@ -129,6 +131,7 @@ With 120 kW (160 bhp) of electric boost deployed without clipping down the 1.1 k
     imageAlt: 'F1 car apex qualifying lap',
     featured: true,
     excerpt: 'Anatomy of the ultimate qualifying battle: how tyre preparation on the out-lap, micro-sector apex speeds, and millimeter precision over track limits decided pole position on the edge of the razor.',
+    metaDescription: 'Break down the anatomy of an F1 qualifying flying lap, out-lap tyre preparation, and micro-sector splits that decided pole position by 0.018s.',
     tags: ['Qualifying', 'Pole Position', 'Sector Splits', 'Flying Lap', 'Track Limits'],
     interactiveType: 'telemetry',
     specs: [
@@ -177,6 +180,7 @@ The decider came in the final acceleration zone out of the Parabolica. By waitin
     imageAlt: 'F1 pit wall strategy monitors',
     featured: false,
     excerpt: 'Before 20 cars assemble on the grid, race strategists run billions of Monte Carlo simulations to calculate the exact lap window where pitting early unleashes fresh tyre pace to leapfrog rivals.',
+    metaDescription: 'Compare F1 undercut vs overcut pit stop strategies, pit lane transit delta loss, and compound stint life models ahead of Sunday lights out.',
     tags: ['Strategy', 'Undercut', 'Overcut', 'Pit Stop Delta', 'Tyre Degradation'],
     interactiveType: 'strategy',
     specs: [
@@ -223,6 +227,7 @@ However, the **Overcut** becomes devastating when tyre warm-up is slow or graini
     imageAlt: 'F1 Turn 1 grid start',
     featured: false,
     excerpt: 'The most dangerous, adrenaline-soaked 600 meters in world sport: dissecting the launch physics of human reaction times, clutch paddles, tyre wheelspin, and 300 km/h heavy braking into Turn 1.',
+    metaDescription: 'Examine F1 clutch bite-point launch physics, driver reaction times, and 340 km/h heavy braking dynamics into the chaos of Turn 1.',
     tags: ['Race Start', 'Launch Control', 'Reaction Time', 'Turn 1', 'Braking Physics'],
     interactiveType: 'pitstop',
     specs: [
@@ -271,6 +276,7 @@ With cold brakes and 20 cars jostling within centimeters of each other, aerodyna
     imageAlt: 'F1 pit crew 1.9s tyre change',
     featured: true,
     excerpt: 'Inside the synchronized choreography of the world’s fastest pit crews: wheel guns, quick-release front jacks, automated traffic lights, and why human reaction time is pushed to its absolute limits.',
+    metaDescription: 'Explore how 22 mechanics execute a sub-2.0 second F1 pit stop using 10,500 RPM pneumatic wheel guns and synchronized choreography.',
     tags: ['Pit Stop', 'Pit Crew', 'Wheel Gun', 'Choreography', 'Biomechanics'],
     interactiveType: 'pitstop',
     specs: [
@@ -322,6 +328,7 @@ Despite these restrictions, elite crews routinely execute stationary stops betwe
     imageAlt: 'F1 Safety Car leading pack',
     featured: false,
     excerpt: 'When yellow flags fly and race control deploys the Safety Car or triggers VSC deltas, the entire competitive hierarchy can invert in seconds. Here is the mathematical reality behind the "cheap pit stop".',
+    metaDescription: 'Learn the mathematics behind Virtual Safety Car cheap pit stops, tyre carcass cooling hazards, and race restart cat-and-mouse tactics.',
     tags: ['Safety Car', 'Virtual Safety Car', 'Strategy', 'Pit Window', 'Restart Tactics'],
     interactiveType: 'strategy',
     specs: [
@@ -370,6 +377,7 @@ Savvy leaders back the pack into a crawl at the final hairpin, compress the trai
     imageAlt: 'F1 DRS train straight slipstream',
     featured: false,
     excerpt: 'Why do faster cars get trapped behind slower machinery for 20 laps? We examine the fluid dynamics of DRS flap stalls, dirty air thermal degradation, and tactical ERS battery clipping.',
+    metaDescription: 'Analyze aerodynamic wake wash turbulence, rear wing DRS flap stalls, and 800V MGU-K energy harvesting tactics in high-speed overtaking duels.',
     tags: ['DRS', 'ERS Battery', 'Overtaking', 'Aerodynamics', 'Slipstream'],
     interactiveType: 'telemetry',
     specs: [
@@ -416,6 +424,7 @@ To execute an overtake or defend a position, drivers must "super-charge" their e
     imageAlt: 'F1 chequered flag podium finish',
     featured: true,
     excerpt: 'From lights out to the chequered flag, recap how strategic mastery, relentless pace management, and an audacious final-lap fastest lap dash sealed a legendary Grand Prix victory.',
+    metaDescription: 'Relive the closing stint dogfight, fastest lap bonus point hunt, and official podium celebrations in this complete Monza Grand Prix race recap.',
     tags: ['Race Recap', 'Podium', 'Fastest Lap', 'Chequered Flag', 'Victory'],
     specs: [
       { label: 'Race Winning Margin', value: '+1.428 Seconds', delta: 'After 53 laps' },
@@ -459,6 +468,7 @@ Telemetry showed the chaser extracting maximum traction from Turn 7, closing the
     imageAlt: 'FIA Parc Fermé technical inspection',
     featured: false,
     excerpt: 'The Grand Prix isn’t truly over until the FIA Technical Delegate issues Document 64. Step inside the rigorous post-race scrutineering tests that protect the integrity of Formula 1.',
+    metaDescription: 'Inspect the FIA Parc Fermé post-race scrutineering process, 10mm titanium skid plank wear tests, fuel chromatography, and constructor points.',
     tags: ['Scrutineering', 'FIA', 'Parc Ferme', 'Plank Wear', 'Constructors Points'],
     specs: [
       { label: 'Minimum Weight Limit', value: '798.0 kg', note: 'Car + Driver combined' },

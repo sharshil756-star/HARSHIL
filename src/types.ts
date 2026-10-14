@@ -48,6 +48,7 @@ export interface Article {
   imageAlt: string;
   featured: boolean;
   excerpt: string;
+  metaDescription: string;
   tags: string[];
   specs: TechnicalSpec[];
   sections: ArticleSection[];
