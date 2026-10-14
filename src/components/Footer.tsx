@@ -83,7 +83,8 @@ export default function Footer({ onSelectCategory }: FooterProps) {
               <li>
                 <button
                   onClick={() => onSelectCategory('Race Day')}
-                  className="hover:text-white hover:underline transition-colors"
+                  className="hover:text-white hover:underline transition-colors cursor-pointer"
+                  aria-label="Browse Race Day Debriefs and Grand Prix recaps"
                 >
                   Race Day Debriefs
                 </button>
@@ -91,7 +92,8 @@ export default function Footer({ onSelectCategory }: FooterProps) {
               <li>
                 <button
                   onClick={() => onSelectCategory('Tech')}
-                  className="hover:text-white hover:underline transition-colors"
+                  className="hover:text-white hover:underline transition-colors cursor-pointer"
+                  aria-label="Browse Aerodynamics, Telemetry, and Technical articles"
                 >
                   Aerodynamics & Telemetry
                 </button>
@@ -99,7 +101,8 @@ export default function Footer({ onSelectCategory }: FooterProps) {
               <li>
                 <button
                   onClick={() => onSelectCategory('Strategy')}
-                  className="hover:text-white hover:underline transition-colors"
+                  className="hover:text-white hover:underline transition-colors cursor-pointer"
+                  aria-label="Browse Pit Window and Undercut Strategy models"
                 >
                   Pit Window & Undercut Models
                 </button>
@@ -107,7 +110,8 @@ export default function Footer({ onSelectCategory }: FooterProps) {
               <li>
                 <button
                   onClick={() => onSelectCategory('Qualifying')}
-                  className="hover:text-white hover:underline transition-colors"
+                  className="hover:text-white hover:underline transition-colors cursor-pointer"
+                  aria-label="Browse Q1 to Q3 Qualifying and Sector Split analyses"
                 >
                   Q1 to Q3 Sector Splits
                 </button>
@@ -138,9 +142,10 @@ export default function Footer({ onSelectCategory }: FooterProps) {
           <button
             onClick={scrollToTop}
             className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
+            aria-label="Scroll back to top of the page"
           >
             <span>Back to top</span>
-            <ArrowUp className="w-3.5 h-3.5 text-[#e10600]" />
+            <ArrowUp className="w-3.5 h-3.5 text-[#e10600]" aria-hidden="true" />
           </button>
         </div>
       </div>

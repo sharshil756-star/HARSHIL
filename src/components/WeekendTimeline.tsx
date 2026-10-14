@@ -101,14 +101,15 @@ export default function WeekendTimeline({ articles, onSelectArticle, activeArtic
               <button
                 key={phase.code}
                 onClick={() => article && onSelectArticle(article)}
-                className={`group flex items-center gap-2 py-1.5 px-3 rounded-lg border text-left transition-all ${
+                className={`group flex items-center gap-2 py-1.5 px-3 rounded-lg border text-left transition-all cursor-pointer ${
                   isActive
                     ? 'bg-[#1b2230] border-[#e10600] text-white shadow-sm'
                     : 'bg-[#131720] border-[#1f2635] text-slate-300 hover:border-slate-500 hover:bg-[#181d28]'
                 }`}
                 title={article?.title || phase.desc}
+                aria-label={`Jump to ${phase.name} session debrief: ${article?.title || phase.desc}`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#e10600]' : 'text-slate-400 group-hover:text-white'}`} />
+                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#e10600]' : 'text-slate-400 group-hover:text-white'}`} aria-hidden="true" />
                 <div>
                   <div className="text-xs font-racing font-bold tracking-wide uppercase leading-tight">
                     {phase.name}

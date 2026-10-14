@@ -28,8 +28,10 @@ export default function RaceInfoModal({ isOpen, onClose }: RaceInfoModalProps) {
           <button
             onClick={onClose}
             className="p-1.5 rounded-lg bg-[#181e2a] hover:bg-[#222a3a] text-slate-400 hover:text-white transition-colors cursor-pointer"
+            aria-label="Close circuit specifications modal"
           >
-            <X className="w-4 h-4" />
+            <span className="sr-only">Close specifications</span>
+            <X className="w-4 h-4" aria-hidden="true" />
           </button>
         </div>
 

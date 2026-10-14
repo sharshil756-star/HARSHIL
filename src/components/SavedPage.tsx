@@ -88,9 +88,11 @@ export default function SavedPage({
                     onRemoveBookmark(article.id);
                   }}
                   className="absolute top-3 right-3 p-1.5 rounded-lg bg-[#0d1015]/80 text-rose-400 hover:bg-rose-950 transition-colors"
-                  title="Remove"
+                  title="Remove from saved"
+                  aria-label={`Remove ${article.title} from saved`}
                 >
-                  <Trash2 className="w-3.5 h-3.5" />
+                  <span className="sr-only">Remove from saved</span>
+                  <Trash2 className="w-3.5 h-3.5" aria-hidden="true" />
                 </button>
               </div>
 
@@ -102,7 +104,16 @@ export default function SavedPage({
                     <span>{article.readTime}</span>
                   </div>
                   <h3 className="font-racing font-bold text-base text-white group-hover:text-[#ff3833] line-clamp-2">
-                    {article.title}
+                    <a
+                      href={`/article/${article.slug}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onNavigate(`/article/${article.slug}`);
+                      }}
+                      className="hover:underline focus:outline-none"
+                    >
+                      {article.title}
+                    </a>
                   </h3>
                   <p className="text-xs text-slate-400 mt-2 line-clamp-2">
                     {article.excerpt}
@@ -112,8 +123,9 @@ export default function SavedPage({
                 <div className="mt-4 pt-3 border-t border-[#1d2535] flex items-center justify-between text-xs font-mono text-slate-400">
                   <span>{article.author.name}</span>
                   <div className="flex items-center gap-1 text-[#e10600] font-racing font-bold group-hover:translate-x-1 transition-transform">
-                    <span>READ</span>
-                    <ArrowRight className="w-3 h-3" />
+                    <span>Read Debrief</span>
+                    <span className="sr-only">: {article.title}</span>
+                    <ArrowRight className="w-3 h-3" aria-hidden="true" />
                   </div>
                 </div>
               </div>

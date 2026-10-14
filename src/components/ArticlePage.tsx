@@ -110,7 +110,9 @@ export default function ArticlePage({
               onClick={() => setFontSize(fontSize === 'normal' ? 'large' : 'normal')}
               className="py-1 px-2.5 rounded bg-[#161c28] hover:bg-[#202838] text-slate-300 text-xs font-mono transition-colors"
               title="Toggle reading font size"
+              aria-label="Toggle reading font size"
             >
+              <span className="sr-only">Toggle font size: </span>
               <span className={fontSize === 'large' ? 'font-bold text-white' : 'text-slate-400'}>A</span>
               <span className={fontSize === 'large' ? 'text-xs text-[#e10600]' : 'text-[10px] text-slate-400'}>A</span>
             </button>
@@ -123,17 +125,20 @@ export default function ArticlePage({
                   : 'bg-[#161c28] hover:bg-[#202838] text-slate-300 hover:text-white'
               }`}
               title={isBookmarked ? 'Saved to Bookmarks' : 'Save Article'}
+              aria-label={isBookmarked ? `Remove ${article.title} from saved bookmarks` : `Save ${article.title} to bookmarks`}
             >
-              <Bookmark className="w-4 h-4 fill-current" />
+              <span className="sr-only">{isBookmarked ? 'Remove bookmark' : 'Save article'}</span>
+              <Bookmark className="w-4 h-4 fill-current" aria-hidden="true" />
             </button>
 
             <button
               onClick={handleShare}
               className="flex items-center gap-1.5 py-1.5 px-3 rounded-lg bg-[#161c28] hover:bg-[#202838] text-slate-300 hover:text-white transition-colors relative cursor-pointer"
               title="Copy Canonical URL"
+              aria-label={`Share ${article.title}`}
             >
-              {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
-              <span className="text-[11px] font-mono hidden sm:inline">
+              {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-400" aria-hidden="true" /> : <Share2 className="w-3.5 h-3.5" aria-hidden="true" />}
+              <span className="text-[11px] font-mono">
                 {copiedLink ? 'Copied' : 'Share'}
               </span>
             </button>

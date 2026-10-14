@@ -87,7 +87,16 @@ export default function ArticleCard({
 
           {/* Title */}
           <h2 className="font-racing font-bold text-lg md:text-xl text-white group-hover:text-[#ff3833] transition-colors line-clamp-2 leading-snug">
-            {article.title}
+            <a
+              href={href || `/article/${article.slug}`}
+              onClick={(e) => {
+                e.preventDefault();
+                onSelect(article);
+              }}
+              className="hover:underline focus:outline-none"
+            >
+              {article.title}
+            </a>
           </h2>
 
           {/* Excerpt */}
@@ -125,7 +134,8 @@ export default function ArticleCard({
             </div>
 
             <div className="flex items-center gap-1 font-racing text-xs font-bold text-[#e10600] group-hover:translate-x-0.5 transition-transform">
-              <span>DEBRIEF</span>
+              <span>Read Full Debrief</span>
+              <span className="sr-only">: {article.title}</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </div>
           </div>

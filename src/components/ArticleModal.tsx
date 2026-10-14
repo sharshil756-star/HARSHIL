@@ -103,8 +103,9 @@ export default function ArticleModal({
             <button
               onClick={onClose}
               className="flex items-center gap-1.5 py-1.5 px-3 rounded-lg bg-[#181e2b] hover:bg-[#222a3a] text-slate-300 hover:text-white text-xs font-racing font-bold tracking-wide uppercase transition-colors cursor-pointer"
+              aria-label="Return to Race Weekend Hub"
             >
-              <ArrowLeft className="w-3.5 h-3.5" />
+              <ArrowLeft className="w-3.5 h-3.5" aria-hidden="true" />
               <span>Back to Hub</span>
             </button>
 
@@ -124,7 +125,9 @@ export default function ArticleModal({
               onClick={() => setFontSize(fontSize === 'normal' ? 'large' : 'normal')}
               className="py-1 px-2.5 rounded bg-[#181e2b] hover:bg-[#222a3a] text-slate-300 text-xs font-mono transition-colors"
               title="Toggle reading font size"
+              aria-label="Toggle reading font size"
             >
+              <span className="sr-only">Toggle font size: </span>
               <span className={fontSize === 'large' ? 'font-bold text-white' : 'text-slate-400'}>A</span>
               <span className={fontSize === 'large' ? 'text-xs text-[#e10600]' : 'text-[10px] text-slate-400'}>A</span>
             </button>
@@ -138,8 +141,10 @@ export default function ArticleModal({
                   : 'bg-[#181e2b] hover:bg-[#222a3a] text-slate-300 hover:text-white'
               }`}
               title={isBookmarked ? 'Saved to Bookmarks' : 'Save Article'}
+              aria-label={isBookmarked ? `Remove ${article.title} from saved bookmarks` : `Save ${article.title} to bookmarks`}
             >
-              <Bookmark className="w-4 h-4 fill-current" />
+              <span className="sr-only">{isBookmarked ? 'Remove bookmark' : 'Save article'}</span>
+              <Bookmark className="w-4 h-4 fill-current" aria-hidden="true" />
             </button>
 
             {/* Share button */}
@@ -147,8 +152,10 @@ export default function ArticleModal({
               onClick={handleShare}
               className="p-2 rounded-lg bg-[#181e2b] hover:bg-[#222a3a] text-slate-300 hover:text-white transition-colors relative cursor-pointer"
               title="Copy Article Link"
+              aria-label={`Share ${article.title}`}
             >
-              {copiedLink ? <Check className="w-4 h-4 text-emerald-400" /> : <Share2 className="w-4 h-4" />}
+              <span className="sr-only">Share article</span>
+              {copiedLink ? <Check className="w-4 h-4 text-emerald-400" aria-hidden="true" /> : <Share2 className="w-4 h-4" aria-hidden="true" />}
               {copiedLink && (
                 <span className="absolute -bottom-8 right-0 bg-emerald-950 text-emerald-300 border border-emerald-600 text-[10px] font-mono px-2 py-0.5 rounded shadow">
                   Copied!
@@ -161,8 +168,10 @@ export default function ArticleModal({
               onClick={onClose}
               className="p-2 rounded-lg bg-[#181e2b] hover:bg-rose-950/50 hover:text-rose-400 text-slate-400 transition-colors ml-1 cursor-pointer"
               title="Close (Esc)"
+              aria-label="Close article reading view"
             >
-              <X className="w-4 h-4" />
+              <span className="sr-only">Close reading view</span>
+              <X className="w-4 h-4" aria-hidden="true" />
             </button>
           </div>
         </div>

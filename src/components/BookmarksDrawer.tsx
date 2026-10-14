@@ -34,8 +34,10 @@ export default function BookmarksDrawer({
           <button
             onClick={onClose}
             className="p-1.5 rounded-lg bg-[#181e2a] hover:bg-[#222a3a] text-slate-400 hover:text-white transition-colors cursor-pointer"
+            aria-label="Close saved race debriefs drawer"
           >
-            <X className="w-4 h-4" />
+            <span className="sr-only">Close drawer</span>
+            <X className="w-4 h-4" aria-hidden="true" />
           </button>
         </div>
 
@@ -85,10 +87,12 @@ export default function BookmarksDrawer({
                         e.stopPropagation();
                         onRemoveBookmark(article.id);
                       }}
-                      className="text-slate-500 hover:text-rose-400 transition-colors p-1"
+                      className="text-slate-500 hover:text-rose-400 transition-colors p-1 cursor-pointer"
                       title="Remove from saved"
+                      aria-label={`Remove ${article.title} from saved debriefs`}
                     >
-                      <Trash2 className="w-3.5 h-3.5" />
+                      <span className="sr-only">Remove from saved</span>
+                      <Trash2 className="w-3.5 h-3.5" aria-hidden="true" />
                     </button>
                   </div>
                 </div>

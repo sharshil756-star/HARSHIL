@@ -211,7 +211,16 @@ export default function App() {
                         </div>
 
                         <h2 className="font-racing font-extrabold text-2xl sm:text-3xl md:text-4xl text-white group-hover:text-[#ff3833] transition-colors leading-tight">
-                          {heroArticle.title}
+                          <a
+                            href={`/article/${heroArticle.slug}`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              navigate(`/article/${heroArticle.slug}`);
+                            }}
+                            className="hover:underline focus:outline-none"
+                          >
+                            {heroArticle.title}
+                          </a>
                         </h2>
 
                         <p className="text-slate-300 text-sm sm:text-base mt-3 line-clamp-3 leading-relaxed">
@@ -249,7 +258,8 @@ export default function App() {
 
                           <div className="flex items-center gap-2 py-2 px-4 rounded-lg bg-[#e10600] text-white font-racing font-bold text-xs uppercase tracking-wider group-hover:bg-[#c50500] transition-colors shadow-md">
                             <span>Read Full Analysis</span>
-                            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                            <span className="sr-only">: {heroArticle.title}</span>
+                            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                           </div>
                         </div>
                       </div>
