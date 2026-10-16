@@ -244,6 +244,7 @@ export default function App() {
                             <img
                               src={heroArticle.author.avatarUrl}
                               alt={heroArticle.author.name}
+                              referrerPolicy="no-referrer"
                               className="w-8 h-8 rounded-full object-cover border border-[#2b3547]"
                             />
                             <div>

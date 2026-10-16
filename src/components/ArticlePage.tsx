@@ -225,6 +225,7 @@ export default function ArticlePage({
           <img
             src={article.author.avatarUrl}
             alt={article.author.name}
+            referrerPolicy="no-referrer"
             className="w-12 h-12 rounded-full object-cover border-2 border-[#2b3547]"
           />
           <div>

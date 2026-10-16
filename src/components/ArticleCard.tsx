@@ -127,6 +127,7 @@ export default function ArticleCard({
               <img
                 src={article.author.avatarUrl}
                 alt={article.author.name}
+                referrerPolicy="no-referrer"
                 className="w-5 h-5 rounded-full object-cover border border-slate-700"
               />
               <span className="text-slate-300 font-medium text-[11px] truncate max-w-[130px]">

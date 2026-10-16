@@ -77,6 +77,7 @@ export default function SavedPage({
                 <img
                   src={article.heroImageUrl}
                   alt={article.imageAlt}
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-3 left-3 bg-[#0d1015]/80 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono font-bold text-slate-300">

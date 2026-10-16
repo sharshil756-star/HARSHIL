@@ -64,6 +64,7 @@ export default function BookmarksDrawer({
                 <img
                   src={article.heroImageUrl}
                   alt={article.imageAlt}
+                  referrerPolicy="no-referrer"
                   className="w-20 h-20 rounded-lg object-cover shrink-0 bg-[#0a0d12]"
                 />
                 <div className="flex-1 min-w-0 flex flex-col justify-between">
