@@ -1,580 +1,770 @@
-import { Article } from '../types';
+import { Article, TestMatchCondition } from '../types';
+
+export const JOURNAL_INFO = {
+  publicationName: 'The Willow & Seam',
+  tagline: 'Cricket Journal & Longform Editorial',
+  subtitle: 'The Quarterly of Test Cricket, Biomechanical Seamcraft, Historical Tours & Pure Sport',
+  volume: 'Volume XII · Autumn Edition · No. 44',
+  establishedYear: '2014',
+  editorInChief: 'Arthur Pendelton',
+  headquarters: 'St John’s Wood, London & Melbourne Cricket Ground Precinct',
+  currentConditions: {
+    ground: "Lord's Cricket Ground, London",
+    pitchType: 'Traditional English Greentop (6mm rye-grass canopy)',
+    weather: 'Overcast & Swirling Light Westerly Breeze',
+    humidity: '74% Relative Humidity (Optimal Conventional Swing Window)',
+    overhead: 'Low stratocumulus cloud cover aiding laminar boundary layer stability',
+    dewFactor: 'Negligible in morning session; damp moisture in outfield',
+    tossAdvantage: 'Bowl First (Exploit 2-hour morning seam movement)'
+  } as TestMatchCondition
+};
 
 export const ARTICLES: Article[] = [
   {
-    id: 'f1-art-01',
+    id: 'cricket-art-01',
     order: 1,
-    slug: 'fp1-fp2-aerodynamics-setup-tyre-degradation',
-    title: 'FP1 & FP2: Aerodynamics Setup & Tyre Degradation Breakdown',
-    subtitle: 'Deciphering flow-vis aerodynamic correlation, ride-height windows, and compound thermal degradation across Friday practice sessions.',
-    category: 'Tech',
-    sessionCode: 'FP1/FP2',
-    readTime: '7 min read',
-    publishedDate: 'Friday, 14:30 CET',
+    slug: 'the-physics-of-the-wobble-seam',
+    title: 'The Physics of the Wobble Seam: Why Modern Fast Bowling Abandoned Conventional Swing',
+    subtitle: 'How Stuart Broad, Jasprit Bumrah, and Pat Cummins engineered unpredictable pitch deviation by scrambling the seam axis at 86 miles per hour.',
+    category: 'Tactics & Seamcraft',
+    sessionCode: 'TEST TACTICS',
+    readTime: '8 min read',
+    publishedDate: 'Autumn Edition · Oct 2026',
+    edition: 'Vol. XII · Issue 44',
     author: {
-      name: 'Dr. Marcus Vance',
-      role: 'Principal Aerodynamicist & Technical Analyst',
-      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'
+      name: 'David Henderson',
+      role: 'Former First-Class Seamer & Senior Bowling Biomechanist',
+      avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80'
     },
-    heroImageUrl: '/images/f1-art-01-aero-rake.jpg',
-    imageAlt: 'Formula 1 car fitted with aerodynamic correlation rakes during Friday free practice',
+    heroImageUrl: '/images/cricket/cricket-ball-seam.jpg',
+    imageAlt: 'Close-up of a hand-stitched red leather cricket ball showing the pronounced six-row seam and lacquered quarters on turf',
     featured: true,
-    excerpt: 'Friday practice isn’t about sheer headline lap times. It is an exacting forensic exercise in ground-effect floor pressure mapping, ride height sealing, and measuring long-run tyre thermal degradation curves across Pirelli’s C2, C3, and C4 compounds.',
-    metaDescription: 'Analyze Formula 1 aerodynamics correlation and Pirelli tyre thermal degradation curves across Friday practice sessions at the Monza Grand Prix.',
-    tags: ['Aerodynamics', 'Tyre Degradation', 'Practice Sessions', 'Ground Effect', 'Flow-Vis'],
-    interactiveType: 'telemetry',
+    excerpt: 'Conventional swing bowling has become an endangered art under the relentless surveillance of high-speed cameras. Instead, modern red-ball masters rely on the wobble seam—an erratic delivery that scrambles in flight, strikes the turf on an indeterminate leather hemisphere, and violently cuts in either direction off the pitch.',
+    metaDescription: 'Explore the aerodynamic physics and biomechanical release of the wobble seam delivery in modern Test cricket fast bowling.',
+    tags: ['Wobble Seam', 'Fast Bowling', 'Aerodynamics', 'Duke Ball', 'Test Cricket'],
+    interactiveType: 'seam-simulator',
     specs: [
-      { label: 'Downforce Level', value: 'High Efficiency Trim', delta: '-4.2% Drag' },
-      { label: 'Floor Edge Height', value: '9.8 mm Dynamic', delta: '±0.4 mm Variance' },
-      { label: 'Track Temp FP1', value: '38.4 °C', note: 'Air 24.1 °C' },
-      { label: 'C3 Soft Fall-off', value: '0.14s / lap', note: 'Thermal cliff at lap 11' }
+      { label: 'Seam Wobble Rate', value: '14.2 Hz', delta: '±3.1 Hz Scramble' },
+      { label: 'Release Velocity', value: '138.6 km/h', delta: '86.1 mph' },
+      { label: 'Deck Deviation', value: '1.84° Nip-Back', note: 'Indeterminate axis' },
+      { label: 'Backspin Rate', value: '1,840 RPM', note: 'Split-finger grip' }
     ],
     quote: {
-      text: 'If your floor edge lifts by even 1.5 millimetres over high-speed yaw transitions, you surrender roughly twenty points of downforce—equivalent to throwing away two-tenths in high-speed apexes.',
-      author: 'Adrian Newey',
-      role: 'Chief Technical Officer'
+      text: 'With orthodox outswing, a top batsman sees the shiny side and leaves on length. With the wobble seam, neither the batsman nor the bowler knows which way the ball will jag off the surface.',
+      author: 'Stuart Broad',
+      role: '604 Test Wickets'
     },
     sections: [
       {
-        title: '1. How Do F1 Teams Calibrate Aerodynamics Using Flow-Vis Paint and Aero Rakes?',
-        content: `**Answer:** Formula 1 teams calibrate aerodynamic correlation during Free Practice 1 by coating critical surfaces in fluorescent paraffin flow-vis paint and mounting kiel-probe aero rakes, physically validating whether track airflow matches computational fluid dynamics (CFD) and 60% scale wind tunnel simulations.
+        title: '1. Why Does a Wobble-Seam Ball Deviate Randomly Off the Pitch Rather Than in the Air?',
+        content: `**Answer:** A wobble-seam ball deviates off the pitch rather than in the air because the bowler purposely tilts the primary seam at an off-axis angle between 15° and 30°, ensuring turbulent airflow prevents smooth aerodynamic laminar swing while causing the ball to strike the turf unpredictably on either the raised leather seam or the smoother leather quarter.
 
-As the green light illuminated the pit lane exit at 13:30 local time for FP1, cars emerged sporting fluorescent flow-vis paint across front wing endplates, sidepod undercut tunnels, and rear diffuser strakes. The primary objective in FP1 is not chasing headline lap times on low fuel; it is establishing absolute empirical correlation between numerical simulations and open-air boundary layer physics.
+When James Anderson and Mohammad Asif first refined this grip during the late 2000s, they noticed that modern batsmen were deciphering conventional swing during the ball's first five metres of flight. By slightly spreading the index and middle fingers across the seam and cocking the wrist sideways at release, the bowler induces an axial gyroscopic precession.
 
-Engineers focus on flow separation at the leading edge of the Venturi tunnels. Modern ground-effect regulations demand that the underfloor throat produces the vast majority of downforce without inducing aerodynamic stall or vertical oscillation (porpoising). With dynamic ride heights running under 10 mm at 300 km/h, the interaction between tyre squirt turbulence and the floor edge seal dictates whether the diffuser stays attached under sustained lateral loads.`,
+As the ball travels through the air at roughly 38 metres per second, the seam does not remain upright and knife-straight. Instead, it wobbles like a dying spinning top. When the ball reaches the landing area 6 to 8 metres in front of the batsman's popping crease, its contact patch is entirely stochastic. If the seam hits first, the ball grips the turf and jags sharply off the deck; if the leather quarter hits first, it skids on flat with minimal lateral change, deceiving the batsman who has already committed to forward defense.`,
         keyMetric: {
-          stat: '1,420 kg',
-          description: 'Total vertical load generated at 280 km/h by floor underbody tunnels alone'
+          stat: '0.18 sec',
+          description: 'Time between pitch bounce and ball reaching the edge of the bat'
         }
       },
       {
-        title: '2. How Does Track Temperature Evolution Affect Tyre Grip and Graining Between FP1 and FP2?',
-        content: `**Answer:** A rapid drop in circuit temperature between afternoon and twilight sessions triggers front axle graining, because the tyre surface slides over micro-rough asphalt before the inner carcass reaches its mandatory 100°C operating window.
+        title: '2. How Did the 2018 Duke Ball Lacquer Changes Accelerate the Transition Away from Conventional Outswing?',
+        content: `**Answer:** Subtle formulation adjustments to the nitrocellulose lacquer and cowhide density in recent Duke and Kookaburra balls caused the shiny hemisphere to scuff much faster on abrasive pitches, forcing seamers to replace aerodynamic air-swing with mechanical off-pitch movement.
 
-Between FP1 in the heat of early afternoon and FP2 under twilight conditions, Monza track temperatures dropped precipitously from 41°C to 29°C. This 12-degree delta completely reorders mechanical grip dynamics.
+Prior to 2018, an English Duke ball maintained an immaculate mirror polish on one hemisphere for up to 30 overs under English cloud cover. A bowler with a pristine upright seam could generate consistent 2.5-degree late hoop in the air. However, modern sand-based root-zone drainage systems on international grounds chew up the lacquer within twelve overs.
 
-In cooler track temperatures, front axle graining becomes the preeminent operational hazard. When the tyre surface slides without sufficient bulk core temperature, microscopic tears propagate across the tread blocks. Drivers reported noticeable understeer through the mid-speed complexes as the front tyres entered surface scrubbing before reaching their target 100°C carcass operating window.`,
+Faced with dead air and an unresponsive ball, bowlers like Pat Cummins, Jasprit Bumrah, and Ollie Robinson adapted. The wobble seam operates independently of lacquer perfection. Because it relies purely on the kinetic friction of the six rows of linen stitching impacting the turf fibers, it remains lethal even when the ball has lost its shine at 45 overs old.`,
         highlightBox: {
-          title: 'Engineering Debrief: Surface vs. Carcass Temperature',
-          body: 'Pirelli telemetry sensors measure both inner tread bulk temperature and surface infrared thermal imaging. A 15°C discrepancy between surface flash temperature and core pressure leads to instantaneous snap-oversteer on corner exit.'
+          title: 'Biomechanical Telemetry: The Asymmetrical Finger Squeeze',
+          body: 'High-speed 1,000 fps cameras show that Jasprit Bumrah applies 18% greater pressure through the index finger than the middle finger at release, generating an instantaneous 22° seam cant that prevents the seam from aligning with flight trajectory.'
         }
       },
       {
-        title: '3. What Do FP2 Long-Run Simulations Reveal About Tyre Degradation Gradients?',
-        content: `**Answer:** FP2 high-fuel race simulations reveal that the Medium (C3) compound degrades at a manageable 0.082s per lap, whereas the Soft (C4) compound suffers steep 0.165s per lap thermal degradation and falls off a performance cliff on lap 9.
+        title: '3. What Biomechanical Wrist Adjustments Prevent the Seam from Spinning Upright?',
+        content: `**Answer:** To prevent upright gyroscopic backspin, the fast bowler locks the wrist in slight radial deviation and releases the ball with zero wrist snap, ensuring no clean perpendicular backspin axis forms.
 
-The final 35 minutes of FP2 were dedicated to high-fuel race simulations with 105 kg fuel ballast. Across a continuous 16-lap stint on the Medium (C3) compound, the degradation slope stabilized at 0.082 seconds per lap. Contrast this with the Soft (C4) compound, which exhibited rapid thermal degradation of 0.165s/lap, reaching the critical performance cliff on lap 9.
+In conventional outswing, the wrist snaps cleanly downward behind the seam, imparting 2,200 revolutions per minute of pure backspin that stabilizes the seam upright like a gyroscope. In contrast, the wobble-seam release demands a dead, stiffened wrist.
 
-This stark contrast virtually confirms that the Soft tyre will remain an exclusively qualifying rubber option for Sunday’s Grand Prix, forcing teams toward a Medium-to-Hard one-stop or Medium-Hard-Medium aggressive two-stop baseline.`
+The bowler holds the wrist slightly tilted toward fine leg or third slip, releasing the ball off the pads of the fingers with a gentle lateral push. The absence of a snapping snap produces a tumbling rotation. For batsmen, this optical blur removes any visual reference point: the seam appears as a hazy red ribbon, offering no visual clues until the ball bites the turf and cannons into the top of off-stump.`,
+        keyMetric: {
+          stat: '4.2 mm',
+          description: 'Average seam height above ball circumference that dictates off-pitch cut'
+        }
       }
     ]
   },
   {
-    id: 'f1-art-02',
+    id: 'cricket-art-02',
     order: 2,
-    slug: 'fp3-fine-tuning-telemetry-secrets-ahead-of-qualifying',
-    title: 'FP3 Fine-Tuning: Telemetry Secrets Ahead of Qualifying',
-    subtitle: 'From mechanical spring rates to differential entry pre-load: how engineers transform overnight simulation runs into razor-sharp Saturday morning single-lap pace.',
-    category: 'Tech',
-    sessionCode: 'FP3',
-    readTime: '6 min read',
-    publishedDate: 'Saturday, 12:45 CET',
+    slug: 'the-lords-slope-geometry-gravity-and-cathedral-tilt',
+    title: 'The Lord’s Slope: Geometry, Gravity, and the Eight-Foot Tilt of World Cricket’s Cathedral',
+    subtitle: 'Forensic analysis of the 2.5-metre drop from the Mound Stand to the Grandstand, and why right-arm seamers feast on downhill nip-backers.',
+    category: 'Cricket History',
+    sessionCode: 'ICONIC GROUNDS',
+    readTime: '9 min read',
+    publishedDate: 'Autumn Edition · Oct 2026',
+    edition: 'Vol. XII · Issue 44',
     author: {
       name: 'Elena Rostova',
-      role: 'Senior Race Strategy & Telemetry Engineer',
+      role: 'Senior Cricket Historian & Archival Curator',
       avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80'
     },
-    heroImageUrl: '/images/f1-art-02-telemetry.jpg',
-    imageAlt: 'Formula 1 steering wheel digital telemetry cockpit screen with sensor readings and rotary controls',
+    heroImageUrl: '/images/cricket/cricket-classic-pavilion.jpg',
+    imageAlt: 'The historic red-brick Victorian Pavilion at Lord’s Cricket Ground with the terracotta Long Room facade and green outfield',
     featured: false,
-    excerpt: 'The Saturday morning 60-minute window is the final opportunity to lock in suspension geometry, damper stiffness, and differential ramp angles before Parc Fermé regulations permanently freeze car specifications.',
-    metaDescription: 'Discover how F1 race engineers decode telemetry speed traces, heave damper setups, and differential ramp angles ahead of Saturday qualifying.',
-    tags: ['FP3', 'Telemetry', 'Set-up', 'Parc Ferme', 'Differential'],
-    interactiveType: 'telemetry',
+    excerpt: 'No sports ground on Earth contains an architectural idiosyncrasy as punishing as the Lord’s slope. Over the 150-metre width of the playing surface, the turf falls 2.5 metres from north-west to south-east, turning basic gravitational physics into an unseen eleventh fielder.',
+    metaDescription: 'Detailed architectural and tactical investigation of the 8-foot slope at Lord’s Cricket Ground and its effect on Test match bowling.',
+    tags: ["Lord's", 'The Slope', 'Cricket History', 'MCC', 'Test Grounds'],
+    interactiveType: 'pitch-lab',
     specs: [
-      { label: 'Apex Minimum Speed', value: '184.2 km/h', delta: '+3.1 km/h vs FP2' },
-      { label: 'Differential Pre-Load', value: '45 Nm Mid-Corner', delta: 'Tighter lock' },
-      { label: 'Heave Spring Stiffness', value: '1,250 N/mm', note: 'Prevents floor grounding' },
-      { label: 'Telemetry Channels', value: '300+ Live Sensors', note: '1.2 GB data / lap' }
+      { label: 'Total Ground Drop', value: '2.50 m (8 ft 2 in)', delta: 'NW to SE Gradient' },
+      { label: 'Downhill Drift', value: '+14.2 cm', note: 'Pavilion to Nursery End' },
+      { label: 'Uphill Leg-Break', value: '-8.4 cm', note: 'Gravity resistance' },
+      { label: 'Crease Angle Delta', value: '1.24° Tilt', note: 'Popping crease slant' }
     ],
-    sections: [
-      {
-        title: '1. How Do Teams Use Overnight Simulator Correlation to Fix Car Balance for FP3?',
-        content: `**Answer:** Factory test drivers run hundreds of overnight laps in driver-in-the-loop (DiL) simulators using Friday FP2 telemetry, fine-tuning suspension roll stiffness and hydraulic heave damping to resolve front-end balance issues before Saturday practice.
-
-While race drivers slept, factory test drivers in Brackley and Maranello pounded out hundreds of simulated laps until 04:30 AM. Telemetry logged from Friday FP2 was fed into multi-body vehicle dynamics simulators to solve front-end balance deficiencies identified in Sector 2.
-
-The key breakthrough came in third-element heave spring stiffness. By softening the front mechanical roll stiffness by 4% while stiffening the high-speed hydraulic heave damper, the aerodynamic platform was stabilized across kerb strikes without destabilizing the Venturi throat under 4.5G lateral cornering loads.`
-      },
-      {
-        title: '2. What Telemetry Traces Reveal About Throttle Application and Differential Pre-Load?',
-        content: `**Answer:** Telemetry velocity traces and throttle curves show that looser differential ramp angles allow sharper apex rotation at the expense of twitchiness, while higher differential pre-load locks the rear axle for stability at the cost of slight entry understeer.
-
-Telemetry overlays between the leading factory entries revealed contrasting philosophies in corner entry stability. Car #1 ran a looser differential ramp angle on coast (35° off-throttle), allowing the rear axle to rotate effortlessly into apexes at the cost of slight steering corrections.
-
-Conversely, Car #16 dialed in extra differential pre-load (50 Nm), ensuring the rear axle remained firmly tied down. While this eliminated oversteer snaps over the kerbs, it demanded earlier trail-braking pressure modulation to avoid pushing the front tyres wide onto the marble-strewn line.`
-      },
-      {
-        title: '3. How Do Qualifying Engine Modes and MGU-K Strat Settings Boost Lap Times?',
-        content: `**Answer:** Deploying Qualifying Engine Mode 1 and MGU-K Strat 2 delivers an instantaneous 120 kW (160 bhp) electric boost without battery clipping down straights, shaving roughly 0.45 seconds compared to practice setups.
-
-During the final 10 minutes of FP3, teams conducted dress-rehearsal qualifying simulation runs. Power units were dialled up into ICE Mode 1 and MGU-K Strat 2 (Qualifying Energy Deployment).
-
-With 120 kW (160 bhp) of electric boost deployed without clipping down the 1.1 km main straight, drivers experienced an immediate 0.45-second delta improvement over their Friday baselines, setting the stage for one of the tightest qualifying sessions in recent memory.`
-      }
-    ]
-  },
-  {
-    id: 'f1-art-03',
-    order: 3,
-    slug: 'q1-to-q3-flying-lap-anatomy-and-sector-splits',
-    title: 'Q1 to Q3: The Flying Lap Anatomy and Sector Splits',
-    subtitle: 'Track evolution, out-lap tyre temperature conditioning, and the microscopic micro-sector splits that determined pole position by 0.018 seconds.',
-    category: 'Qualifying',
-    sessionCode: 'QUALIFYING',
-    readTime: '8 min read',
-    publishedDate: 'Saturday, 17:15 CET',
-    author: {
-      name: 'Liam Sterling',
-      role: 'Chief Motorsport Correspondent',
-      avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80'
+    quote: {
+      text: 'You run down the hill from the Pavilion End and feel like you have wings. But running in uphill from the Nursery End feels like bowling with lead weights strapped to your boots.',
+      author: 'Glenn McGrath',
+      role: 'Lord’s Honors Board Legend'
     },
-    heroImageUrl: '/images/f1-art-03-qualifying.jpg',
-    imageAlt: 'Formula 1 car attacking the apex on a maximum attack qualifying flying lap at Monza',
-    featured: true,
-    excerpt: 'Anatomy of the ultimate qualifying battle: how tyre preparation on the out-lap, micro-sector apex speeds, and millimeter precision over track limits decided pole position on the edge of the razor.',
-    metaDescription: 'Break down the anatomy of an F1 qualifying flying lap, out-lap tyre preparation, and micro-sector splits that decided pole position by 0.018s.',
-    tags: ['Qualifying', 'Pole Position', 'Sector Splits', 'Flying Lap', 'Track Limits'],
-    interactiveType: 'telemetry',
-    specs: [
-      { label: 'Pole Position Lap', value: '1:18.842', delta: '-0.018s to P2' },
-      { label: 'Sector 1 Split', value: '25.104s', delta: 'Purple' },
-      { label: 'Sector 2 Split', value: '29.312s', delta: 'Yellow (+0.042)' },
-      { label: 'Sector 3 Split', value: '24.426s', delta: 'Purple (-0.060)' }
-    ],
     sections: [
       {
-        title: '1. Why Is Out-Lap Pirelli Tyre Temperature Conditioning Crucial for a Flying Lap?',
-        content: `**Answer:** Out-lap preparation dictates flying lap grip because exceeding 112°C bulk rear temperature guarantees thermal degradation at the end of the lap, while cold front brakes below 400°C cause instant lockups into Turn 1.
+        title: '1. How Does the Lord’s Slope Physically Alter a Bowler’s Release Point and Ball Trajectory?',
+        content: `**Answer:** The 2.5-metre slope physically tilts the landing crease by 1.24 degrees, altering the bowler’s landing foot plant and utilizing gravity to naturally pull any delivery traveling from the Pavilion End downward toward the slips and third man.
 
-A qualifying lap is won or lost before crossing the start-finish line. If a driver pushes too aggressively on the out-lap through turns 8 and 9, the rear tyre bulk temperature spikes to 112°C, guaranteeing thermal degradation and traction loss at the final chicane. Conversely, if trapped behind slower traffic in the final sector, the front brake discs drop below 400°C, leading to instant lock-ups into Turn 1.
+When Thomas Lord relocated his third and final ground to St John’s Wood in 1814, leveling technology was limited to horse-drawn rollers and shovels. The natural incline of the Middlesex hillside remained embedded in the field.
 
-The sweet spot requires a meticulous delta pace: rolling brake heating sequences, weaving to generate carcass flexion, and hitting the final acceleration zone at precisely 98°C across all four corners.`
-      },
-      {
-        title: '2. How Does Track Grip Evolution Create Q1 and Q2 Elimination Drama?',
-        content: `**Answer:** Track evolution adds approximately 0.12 seconds of mechanical grip every six minutes as cars lay down rubber, meaning early lap times rapidly become vulnerable to elimination as the track ramps up.
-
-As 20 cars continuously laid fresh rubber onto the racing line, track evolution yielded roughly 0.12 seconds of free grip every six minutes. Drivers on early runs in Q1 found themselves hovering on the brink of elimination, requiring frantic second runs on fresh softs.
-
-In Q2, tyre conservation took center stage. With the midfield separated by a microscopic 0.28 seconds from P7 down to P16, any hesitation over exit kerbs spelled disaster. Three drivers suffered lap-time deletions for white line infringements at Turn 4, where the FIA optical timing sensors detected wheels exceeding boundaries by less than 12 millimeters.`
-      },
-      {
-        title: '3. What Micro-Sector Splits Decided the Q3 Pole Position Shootout?',
-        content: `**Answer:** Pole position was decided by a microscopic 0.018 seconds when superior low-drag straightline speed in Sector 1 was countered by mid-corner traction in Sector 2, with the final exit traction out of the Parabolica settling the outcome.
-
-In the dying 90 seconds of Q3, the track reached peak grip. Sector 1 belonged to the Red Bull of Verstappen, exploiting high-efficiency low-drag top speed to post a 25.104. Yet through the twisty medium-speed sequence of Sector 2, Ferrari clawed back two-tenths with superior mechanical traction and rapid direction change.
-
-The decider came in the final acceleration zone out of the Parabolica. By waiting two meters longer before unleashing full throttle and avoiding rear wheel slip, pole position was snatched at the line by just eighteen thousandths of a second—the equivalent of 105 centimeters at 320 km/h.`
-      }
-    ]
-  },
-  {
-    id: 'f1-art-04',
-    order: 4,
-    slug: 'grid-formation-and-tyre-strategies-undercut-vs-overcut',
-    title: 'Grid Formation & Tyre Strategies: Undercut vs. Overcut',
-    subtitle: 'The chess match before lights out: pit window calculations, pit lane transit delta loss, and simulation models comparing aggressive undercuts against overcut track position.',
-    category: 'Strategy',
-    sessionCode: 'GRID',
-    readTime: '7 min read',
-    publishedDate: 'Sunday, 11:30 CET',
-    author: {
-      name: 'Elena Rostova',
-      role: 'Senior Race Strategy & Telemetry Engineer',
-      avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80'
-    },
-    heroImageUrl: '/images/f1-art-04-grid-formation.jpg',
-    imageAlt: 'Formula 1 starting grid formation with pit crew mechanics, tyre blankets and strategy equipment',
-    featured: false,
-    excerpt: 'Before 20 cars assemble on the grid, race strategists run billions of Monte Carlo simulations to calculate the exact lap window where pitting early unleashes fresh tyre pace to leapfrog rivals.',
-    metaDescription: 'Compare F1 undercut vs overcut pit stop strategies, pit lane transit delta loss, and compound stint life models ahead of Sunday lights out.',
-    tags: ['Strategy', 'Undercut', 'Overcut', 'Pit Stop Delta', 'Tyre Degradation'],
-    interactiveType: 'strategy',
-    specs: [
-      { label: 'Pit Transit Loss', value: '21.4 Seconds', note: 'Speed limiter 80 km/h' },
-      { label: 'Undercut Delta Power', value: '1.8s / Out-lap', note: 'Fresh C2 Hard Tyre' },
-      { label: 'Optimal Pit Window', value: 'Laps 19 - 24', note: 'Medium to Hard baseline' },
-      { label: 'Overtaking Difficulty', value: 'High (Index 7.8)', note: 'Favors track position' }
-    ],
-    sections: [
-      {
-        title: '1. How Does Pit Lane Transit Loss Dictate Formula 1 Race Strategy?',
-        content: `**Answer:** Pit lane transit loss establishes the required pit window delta—here costing 21.4 seconds at 80 km/h—meaning a driver must create at least a 22-second gap or drop into clear air to preserve track position after stopping.
-
-At every Grand Prix circuit, the fundamental metric governing strategic flexibility is the pit lane transit loss. At this venue, a 380-meter pit road with an 80 km/h speed limiter costs a driver 21.4 seconds compared to cars continuing at full racing speed on track.
-
-To execute a successful pit stop and retain track position, a driver must either build a 22-second gap ahead or drop into clean air where traffic will not obstruct their out-lap pace. Dropping into a DRS train of midfield cars negates all strategic advantage of new tyres.`
-      },
-      {
-        title: '2. What Is the Difference Between an Undercut and an Overcut Strategy in F1?',
-        content: `**Answer:** The undercut gains position by pitting first to exploit 1.5 to 2.2 seconds of fresh-tyre pace, whereas the overcut stays out in clean air when new tyres warm up slowly or grain on cold out-laps.
-
-The **Undercut** involves pitting one or two laps earlier than the rival directly ahead. Upon fitting fresh tyres, the driver immediately gains the grip differential—typically 1.5 to 2.2 seconds per lap faster than worn tyres. When the leading car pits on the following lap, the chaser sweeps past as the leader rejoins the track on cold rubber.
-
-However, the **Overcut** becomes devastating when tyre warm-up is slow or graining is severe on out-laps. If the chaser struggles to bring new tyres up to temperature through their first three corners, the car staying out in clear air can pump in qualifying-style laps to emerge ahead.`
-      },
-      {
-        title: '3. Why Is a One-Stop Strategy Preferred Over an Aggressive Two-Stop Attack?',
-        content: `**Answer:** While a two-stop strategy is theoretically 4.2 seconds faster on paper, teams overwhelmingly prefer a one-stop baseline because dirty air makes on-track overtakes high-risk and costly in tyre life.
-
-Strategy models indicate that a Medium (Laps 1-22) to Hard (Laps 23-53) strategy yields a theoretical total race duration of 1 hour 24 minutes and 12 seconds. A two-stop Medium-Hard-Medium is theoretically 4.2 seconds faster over 53 laps on paper, but carries the massive downside of requiring two on-track overtakes through dirty air.`
-      }
-    ]
-  },
-  {
-    id: 'f1-art-05',
-    order: 5,
-    slug: 'turn-1-chaos-launch-physics-and-reaction-times',
-    title: 'Turn 1 Chaos: Launch Physics and Reaction Times',
-    subtitle: 'Dual-clutch bite-point calibration, 0-200 km/h in 4.2 seconds, dirty vs clean grid slots, and surviving the bottleneck into the first braking zone.',
-    category: 'Race Day',
-    sessionCode: 'RACE START',
-    readTime: '6 min read',
-    publishedDate: 'Sunday, 14:45 CET',
-    author: {
-      name: 'Dr. Marcus Vance',
-      role: 'Principal Aerodynamicist & Technical Analyst',
-      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'
-    },
-    heroImageUrl: '/images/f1-art-05-turn1-start.jpg',
-    imageAlt: 'Formula 1 cars launching off the starting grid and battling through Turn 1 at full speed',
-    featured: false,
-    excerpt: 'The most dangerous, adrenaline-soaked 600 meters in world sport: dissecting the launch physics of human reaction times, clutch paddles, tyre wheelspin, and 300 km/h heavy braking into Turn 1.',
-    metaDescription: 'Examine F1 clutch bite-point launch physics, driver reaction times, and 340 km/h heavy braking dynamics into the chaos of Turn 1.',
-    tags: ['Race Start', 'Launch Control', 'Reaction Time', 'Turn 1', 'Braking Physics'],
-    interactiveType: 'pitstop',
-    specs: [
-      { label: 'Average Reaction Time', value: '0.19 - 0.24 Seconds', delta: 'To five red lights out' },
-      { label: '0 to 100 km/h', value: '2.4 Seconds', note: 'Mechanical grip limited' },
-      { label: '0 to 200 km/h', value: '4.3 Seconds', note: '1,000+ HP hybrid deployment' },
-      { label: 'Turn 1 Braking Force', value: '5.4 G Deceleration', note: '140 kg brake pedal force' }
-    ],
-    sections: [
-      {
-        title: '1. How Do F1 Drivers Find the Clutch Bite-Point Without Automated Launch Control?',
-        content: `**Answer:** With automated launch control strictly banned by the FIA, drivers manually discover the clutch friction bite-point during the formation lap and modulate a single steering-wheel paddle to hold 11,500 RPM at lights out.
-
-Under modern FIA regulations, automated launch control and torque mapping algorithms are strictly banned. The driver controls the start using a single tactile clutch paddle mounted behind the steering wheel.
-
-During the formation lap, drivers conduct practice bite-point discovery runs. On the grid, the driver must pull the paddle, hold engine RPM at precisely 11,500, and release the paddle to a predetermined percentage the millisecond all five red lights extinguish. Release too little, and the engine bogs down; release too much, and the rear tyres ignite into uncontrollable wheelspin.`
-      },
-      {
-        title: '2. Why Does the Clean Side of the Starting Grid Have an Advantage Over the Dirty Side?',
-        content: `**Answer:** The odd-numbered clean grid slots sit directly on the racing line where rubber has accumulated all weekend, giving P1, P3, and P5 a 1.2-meter launch advantage by 100 km/h over dusty even-numbered slots.
-
-Because the racing line runs along the odd-numbered grid slots (P1, P3, P5...), the 'clean side' features rubber laid down throughout the entire weekend. The even-numbered 'dirty side' (P2, P4, P6...) contains dust, debris, and lower micro-texture grip.
-
-Historical data confirms a 1.2-meter launch deficit by 100 km/h for the dirty side, often allowing P3 to slipstream alongside P2 before the 200-meter braking marker.`
-      },
-      {
-        title: '3. How Do F1 Cars Decelerate from 340 km/h into Turn 1 Under 5.4 Gs?',
-        content: `**Answer:** Drivers apply over 140 kg of leg pressure to carbon brake pedals to generate 5.4 Gs of deceleration into Turn 1, while actively compensating for a 30% downforce loss caused by turbulent dirty air.
-
-Approaching Turn 1, drivers must slam the carbon brake pedal with upwards of 140 kilograms of leg force. Deceleration exceeds 5.4 G—shifting bodily blood forward into the eyes and helmet.
-
-With cold brakes and 20 cars jostling within centimeters of each other, aerodynamic dirty air washes over the front wings, temporarily slashing downforce by 30%. Managing this instantaneous loss of front grip is what separates a race leader from an opening-lap carbon fiber pileup.`
-      }
-    ]
-  },
-  {
-    id: 'f1-art-06',
-    order: 6,
-    slug: 'pit-stop-precision-how-mechanics-execute-1-9-second-stop',
-    title: 'Pit Stop Precision: How Mechanics Execute a 1.9-Second Stop',
-    subtitle: 'Twenty human beings, four 18-inch wheels, pneumatic torque guns running at 10,000 RPM, and milliseconds of pure biomechanical perfection.',
-    category: 'Tech',
-    sessionCode: 'PIT STOP',
-    readTime: '6 min read',
-    publishedDate: 'Sunday, 15:30 CET',
-    author: {
-      name: 'Liam Sterling',
-      role: 'Chief Motorsport Correspondent',
-      avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80'
-    },
-    heroImageUrl: '/images/ferrari-pit-stop.jpg',
-    imageAlt: 'Formula 1 pit stop in pit lane with 22 crew mechanics servicing race car',
-    featured: true,
-    excerpt: 'Inside the synchronized choreography of the world’s fastest pit crews: wheel guns, quick-release front jacks, automated traffic lights, and why human reaction time is pushed to its absolute limits.',
-    metaDescription: 'Explore how 22 mechanics execute a sub-2.0 second F1 pit stop using 10,500 RPM pneumatic wheel guns and synchronized choreography.',
-    tags: ['Pit Stop', 'Pit Crew', 'Wheel Gun', 'Choreography', 'Biomechanics'],
-    interactiveType: 'pitstop',
-    specs: [
-      { label: 'World Record Stop', value: '1.80 Seconds', note: 'McLaren, Qatar GP' },
-      { label: 'Wheel Nut Torque', value: '450 Nm', note: 'Secured in 0.18s' },
-      { label: 'Wheel Gun RPM', value: '10,500 RPM', note: 'Pneumatic 30-bar pressure' },
-      { label: 'Crew Members', value: '22 Specialists', note: '3 per wheel corner' }
-    ],
-    sections: [
-      {
-        title: '1. What Roles Do the 22 Mechanics Play During a Sub-2-Second F1 Pit Stop?',
-        content: `**Answer:** A 22-person pit crew divides into 3 specialists per wheel corner (Gunner, Wheel-Off, Wheel-On) plus front and rear jack operators, 2 side car stabilisers, 2 wing flap adjusters, and an automated gantry release controller.
-
-A Formula 1 pit stop is the ultimate fusion of sports science and industrial automation. Each of the four wheel corners features three specialized mechanics:
-1. **The Gunner**: Operates the high-torque pneumatic wheel gun.
-2. **The Wheel-Off**: Strips away the blistering 110°C used tyre.
-3. **The Wheel-On**: Slots the fresh 18-inch tyre onto the hub drive pins.
-
-Additionally, front and rear jack operators lift the 798 kg machine into the air, two side stabilisers prevent sway, two wing-adjusters dial aerodynamic flaps, and a pit controller monitors the automated green light gantry.`,
+For a right-arm bowler operating from the Pavilion End, the ball naturally drifts with the gravitational fall of the land from left to right across a right-handed batsman. Even without seam movement, a ball pitched on middle stump drifts inexorably toward fourth or fifth stump. Conversely, bowling from the Nursery End requires pushing the ball uphill against the contour, demanding exceptional wrist control to prevent deliveries sliding down the leg side.`,
         keyMetric: {
-          stat: '1.80s',
-          description: 'Official all-time Formula 1 world record stationary pit stop duration'
+          stat: '14.2 cm',
+          description: 'Natural gravitational lateral drift over 20 metres without seam movement'
         }
       },
       {
-        title: '2. How Do Captive Wheel Nuts and Optical Torque Sensors Guarantee Instant Release?',
-        content: `**Answer:** Captive wheel nuts integrated inside the wheel rim prevent lost hardware, while internal optical encoders inside the 10,500 RPM wheel guns automatically signal the pit gantry the millisecond 450 Nm torque is reached.
+        title: '2. Why Do Visiting Batsmen Consistently Misjudge Off-Stump Outside Edges Down the Slope?',
+        content: `**Answer:** Visiting batsmen misjudge outside edges because their internal muscle memory assumes a level horizon, whereas the Lord’s slope creates an optical tilt that makes off-stump appear two inches further inside than it actually sits.
 
-Modern wheel nuts are integrated directly into the wheel rim rather than free-floating pieces, eliminating lost nuts. The wheel guns feature internal optical rotation encoders and torque transducers.
+Human proprioception relies on peripheral visual cues like grandstand rooflines and outfield boundaries to calibrate balance. At Lord’s, the Grandstand sits noticeably lower than the Mound Stand.
 
-When the nut reaches its target 450 Nm torque setting, the gun transmits an electronic signal to the car’s overhead gantry. Once all four corners acknowledge completion and the pit lane pit-box exit sensor detects no oncoming traffic, the light flashes green and the front jack drops automatically.`,
+When a batsman sets their guard on off-stump, their eye-line is tilted by over one degree. Deliveries angling into them appear safe to leave; yet as the ball pitches, gravity pulls it down the slope just enough to catch the defensive shoulder of the bat. This optical illusion explains why visiting touring sides historically suffer top-order collapses within their first ten overs at the ground.`,
         highlightBox: {
-          title: 'Engineering Debrief: Pneumatic Gun Specifications',
-          body: 'Wheel guns are powered by dry compressed air or nitrogen at 30-bar (435 psi), generating 450 Nm of torque in less than 0.20 seconds to seat the central locking nut.'
+          title: 'The Lord’s Honors Board Anomaly',
+          body: 'Seventy-two percent of five-wicket hauls on the Lord’s Honors Board have been claimed by right-arm fast-medium seamers operating from the Pavilion End, utilizing the slope to target the batsman’s outside edge.'
         }
       },
       {
-        title: '3. Why Is Human Reaction Time Buffered by FIA Technical Directives During Pit Stops?',
-        content: `**Answer:** FIA Technical Directive TD18 mandates an artificial 0.15-second electronic reaction delay to prevent mechanics from anticipating actions before wheel nuts are fully torqued, prioritizing safety.
+        title: '3. What Historic Drainage Systems Prevent Lord’s from Waterlogging Despite the 8-Foot Drop?',
+        content: `**Answer:** Lord’s employs an underground gravity-fed gravel drainage web installed beneath the sand carpet in 2002 that directs rain runoff down the natural 2.5-metre slope into subterranean collection culverts under Wellington Road.
 
-Under FIA Technical Directives (TD18), safety delays ensure mechanics do not anticipate actions prematurely. An intentional 0.15-second human reaction buffer is factored into the electronic release system.
+Before the millennium redevelopment, heavy London cloudbursts caused water to pool along the Grandstand boundary rope like a miniature reservoir.
 
-Despite these restrictions, elite crews routinely execute stationary stops between 1.95 and 2.10 seconds lap after lap.`
+The 2002 outfield reconstruction replaced the old clay soil with a 300 mm deep silica-sand rootzone overlying perforated lateral pipes. Today, even during torrential summer rain, water drains through the turf at a rate of 100 millimetres per hour, allowing play to resume within twenty minutes of the rain clearing.`,
+        keyMetric: {
+          stat: '100 mm/h',
+          description: 'Percolation drainage rate across the Lord’s turf surface'
+        }
       }
     ]
   },
   {
-    id: 'f1-art-07',
-    order: 7,
-    slug: 'safety-car-drama-and-pit-window-windows',
-    title: 'Safety Car Drama & Pit Window Windows',
-    subtitle: 'Virtual Safety Car vs Full Bernd Mayländer deployment: calculating the "cheap pit stop" delta discount and tyre temperature drop-off.',
-    category: 'Strategy',
-    sessionCode: 'SAFETY CAR',
-    readTime: '7 min read',
-    publishedDate: 'Sunday, 16:05 CET',
+    id: 'cricket-art-03',
+    order: 3,
+    slug: 'mastering-the-fourth-innings-chase',
+    title: 'Mastering the Fourth-Innings Chase: The Psychological Warfare of Wearing Pitches',
+    subtitle: 'How fourth-day footmarks, uneven bounce, and ticking run rates turn 240 into a mountainous target under fading light.',
+    category: 'Match Analysis',
+    sessionCode: 'DAY 5 DRAMA',
+    readTime: '8 min read',
+    publishedDate: 'Autumn Edition · Oct 2026',
+    edition: 'Vol. XII · Issue 44',
     author: {
-      name: 'Elena Rostova',
-      role: 'Senior Race Strategy & Telemetry Engineer',
-      avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80'
-    },
-    heroImageUrl: '/images/f1-art-07-safety-car.jpg',
-    imageAlt: 'Official Formula 1 Safety Car leading the field on track with amber lights flashing',
-    featured: false,
-    excerpt: 'When yellow flags fly and race control deploys the Safety Car or triggers VSC deltas, the entire competitive hierarchy can invert in seconds. Here is the mathematical reality behind the "cheap pit stop".',
-    metaDescription: 'Learn the mathematics behind Virtual Safety Car cheap pit stops, tyre carcass cooling hazards, and race restart cat-and-mouse tactics.',
-    tags: ['Safety Car', 'Virtual Safety Car', 'Strategy', 'Pit Window', 'Restart Tactics'],
-    interactiveType: 'strategy',
-    specs: [
-      { label: 'Normal Pit Loss', value: '21.4 Seconds', note: 'At racing speed' },
-      { label: 'VSC Pit Loss Delta', value: '9.8 Seconds', note: 'Pack running at 60% pace' },
-      { label: 'Full Safety Car Loss', value: '11.2 Seconds', note: 'Massive field compression' },
-      { label: 'Tyre Core Temp Loss', value: '-18 °C / 3 Laps', note: 'Restart grip danger' }
-    ],
-    sections: [
-      {
-        title: '1. Why Does a Virtual Safety Car Offer a "Cheap Pit Stop" Delta Advantage?',
-        content: `**Answer:** A Virtual Safety Car reduces effective pit stop loss from 21.4 seconds down to under 10 seconds because the pack on track travels roughly 40% slower, covering far less distance while you are in the pit lane.
-
-Why is pitting under a Safety Car or Virtual Safety Car hailed as a strategic goldmine? Under green flag conditions, your competitors complete laps in roughly 1 minute 20 seconds. If you pit, you lose 21.4 seconds relative to them.
-
-However, during a Virtual Safety Car, all cars on track must adhere to a strict delta lap time that is approximately 40% slower than racing pace. Because cars on track travel so much slower, they cover less track distance during the 20 seconds you spend in the pit lane. As a result, your effective time loss drops from 21.4 seconds down to under 10 seconds—effectively cutting the pit penalty in half!`
-      },
-      {
-        title: '2. What Makes Tyre Temperature Drop-Off Dangerous Behind the Safety Car?',
-        content: `**Answer:** Driving 8 to 10 seconds per lap slower behind the Safety Car removes lateral cornering forces, causing tyre core temperatures to drop from 105°C to the 70s, slashing inflation pressures and creating extreme restart snap-oversteer.
-
-While a cheap pit stop delivers track position, driving behind the Safety Car creates acute technical hazards. Even driving at maximum pace, the Mercedes-AMG GT Black Series Safety Car laps roughly 8 to 10 seconds slower than an F1 car.
-
-Without 5G lateral cornering loads, tyre core temperatures plummet from 105°C down into the 70s. When tyre pressure drops in tandem, the car loses aerodynamic ride height and mechanical grip, leaving drivers vulnerable to vicious snap-oversteer on the restart.`
-      },
-      {
-        title: '3. How Does the Race Leader Exploit Cat-and-Mouse Tactics During a Safety Car Restart?',
-        content: `**Answer:** The leader dictates pace once Safety Car roof lights extinguish, often slowing to a crawl before the final chicane to bunch the field and accelerating unpredictably at the apex before rivals can react.
-
-Once the Safety Car turns off its roof lights signaling in-lap, the race leader assumes total control of the pace. The regulations state that the leader may not brake erratically, but can dictate whatever speed they desire until crossing the control line.
-
-Savvy leaders back the pack into a crawl at the final hairpin, compress the trailing cars, and punch full throttle at the apex before rivals can anticipate the acceleration spike.`
-      }
-    ]
-  },
-  {
-    id: 'f1-art-08',
-    order: 8,
-    slug: 'drs-trains-overtaking-tactics-ers-energy-deployment',
-    title: 'DRS Trains, Overtaking Tactics, and ERS Energy Deployment',
-    subtitle: 'Aerodynamic wake physics, DRS flap stall velocity deltas, 800-volt MGU-K battery harvesting, and breaking the frustrating DRS train deadlock.',
-    category: 'Race Day',
-    sessionCode: 'RACE BATTLE',
-    readTime: '7 min read',
-    publishedDate: 'Sunday, 16:35 CET',
-    author: {
-      name: 'Dr. Marcus Vance',
-      role: 'Principal Aerodynamicist & Technical Analyst',
+      name: 'Alastair Vance',
+      role: 'Chief Cricket Writer & Former Test Match Analyst',
       avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'
     },
-    heroImageUrl: '/images/f1-art-08-drs-overtake.jpg',
-    imageAlt: 'Formula 1 cars locked in wheel-to-wheel overtaking battle on the straight with DRS slipstream',
+    heroImageUrl: '/images/cricket/cricket-pitch-turf.jpg',
+    imageAlt: 'Detailed view of an aged, cracked cricket pitch surface showing drying fissures and rough bowler footmarks outside the popping crease',
     featured: false,
-    excerpt: 'Why do faster cars get trapped behind slower machinery for 20 laps? We examine the fluid dynamics of DRS flap stalls, dirty air thermal degradation, and tactical ERS battery clipping.',
-    metaDescription: 'Analyze aerodynamic wake wash turbulence, rear wing DRS flap stalls, and 800V MGU-K energy harvesting tactics in high-speed overtaking duels.',
-    tags: ['DRS', 'ERS Battery', 'Overtaking', 'Aerodynamics', 'Slipstream'],
-    interactiveType: 'telemetry',
+    excerpt: 'There is no test of sporting nerve quite like walking out to bat on Day 5 of a Test match. The pitch is no longer a pristine runway; it is a battleground scarred by hundreds of fast-bowler spike marks, snake-like fissures, and exploding chalk dust.',
+    metaDescription: 'Tactical and psychological breakdown of fourth-innings run chases on deteriorating Day 5 Test match cricket pitches.',
+    tags: ['Fourth Innings', 'Pitch Degradation', 'Day 5', 'Test Match Tactics', 'Spin Bowling'],
+    interactiveType: 'pitch-lab',
     specs: [
-      { label: 'DRS Speed Delta', value: '+18 to +24 km/h', delta: 'Flap opens 85 mm' },
-      { label: 'ERS Max Deployment', value: '4.0 MJ / lap', note: '120 kW (160 bhp)' },
-      { label: 'Downforce Wake Loss', value: '-22% at 1.0s gap', note: 'Aerodynamic wake wash' },
-      { label: 'Braking Zone Overlap', value: '18 meters', note: 'Late braking pass' }
+      { label: 'Average Chase Win %', value: '21.4%', delta: 'Targets > 250' },
+      { label: 'Day 5 Fissure Width', value: '4.8 mm', note: 'Clay contraction' },
+      { label: 'Turn Angle from Rough', value: '6.4°', delta: '+4.1° vs Day 1' },
+      { label: 'Bounce Variance', value: '±16.2 cm', note: 'Puff of dust variable' }
     ],
+    quote: {
+      text: 'On Day 5, you cannot bat with the scoreboard in mind. You bat for each individual ball as if it were the last over of your life. If you look at the required runs, the demons in the pitch will consume you.',
+      author: 'Rahul Dravid',
+      role: 'The Wall · 13,288 Test Runs'
+    },
     sections: [
       {
-        title: '1. What Causes a Formula 1 "DRS Train" and Why Is It Hard to Break?',
-        content: `**Answer:** A DRS train forms when multiple consecutive cars each stay within 1.0 second of the car ahead, giving all chasers an identical 18 to 24 km/h DRS top-speed boost that neutralizes any overtaking delta.
+        title: '1. Why Is Day 5 Pitch Degradation Geometrically More Lethal to Right-Handed Batsmen Facing Left-Arm Spin?',
+        content: `**Answer:** Day 5 pitch degradation is lethal because right-arm fast bowlers run off the pitch down the left-arm spinner’s landing channel, carving deep craters of dry loose soil outside the right-handed batsman’s off-stump that grip and turn sharply back toward the stumps.
 
-Drag Reduction System (DRS) was designed to counteract the severe loss of aerodynamic downforce caused by running in the turbulent wake of another car. When within 1.000 second at the detection line, the trailing car opens its rear wing flap by 85 mm, shedding massive aerodynamic drag and gaining up to 24 km/h in top speed.
+Over four days of relentless bowling, fast bowlers landing their front foot generate impact forces equivalent to eight times their body weight. These spike marks gouge out the compacted clay, turning the patch roughly two metres in front of the crease into powdered chalk.
 
-However, when four or five cars run nose-to-tail, each car enjoys DRS from the car ahead except for the leader. Because everyone down the straight possesses the top-speed advantage simultaneously, the net delta evaporates, locking the group into an unbreakable "DRS Train."`
+When a left-arm orthodox spinner or right-arm leg-spinner lands the ball into this fractured crater, the friction coefficient doubles instantly. Deliveries that hit the undisturbed grass pitch turn two degrees; deliveries that grip the rough bite, spit dust, and turn six degrees back into the batsman's pads, creating impossible LBW and bat-pad dismissals.`,
+        keyMetric: {
+          stat: '8.2 Gs',
+          description: 'Peak impact force of bowler’s front foot creating rough craters'
+        }
       },
       {
-        title: '2. How Do Drivers Manage 4 Megajoules of ERS Battery Deployment to Avoid Clipping?',
-        content: `**Answer:** FIA rules limit MGU-K hybrid deployment to 4.0 Megajoules (roughly 33.3 seconds of 160 bhp boost) per lap, requiring drivers to save battery mid-lap so they don't suffer sudden power "clipping" down the straights.
+        title: '2. How Do Modern Test Batsmen Counter Deep-Rough Footmarks Without Getting Trapped LBW?',
+        content: `**Answer:** Modern batsmen counter the rough by either advancing two paces out of their crease to smother the ball before it lands in the crater, or employing deep-crease depth with the padded sweep to take LBW dismissals out of the umpire’s equation.
 
-Under FIA regulations, the Energy Recovery System (ERS) is restricted to deploying a maximum of 4.0 Megajoules per lap through the MGU-K. This equals approximately 33.3 seconds of full electric horsepower boost per lap.
+Standing deep in the crease exposes the batsman to erratic bounce; the ball can stay ankle-high or leap at the throat. Conversely, advancing down the track neutralizes the spin angle before it begins.
 
-To execute an overtake or defend a position, drivers must "super-charge" their energy stores. Defending drivers conserve battery through mid-corner phases to dump full power at the start of the straight. If a driver runs out of usable energy mid-straight—known as "clipping"—their car suddenly loses 160 horsepower, becoming a sitting duck for the pursuer.`
+By taking a two-metre stride, the batsman meets the ball at the pitch point. Under the Laws of Cricket and DRS ball-tracking protocols, impact more than three metres from the stumps creates prohibitive margin for error on Hawkeye projection, granting the batsman greater defensive security against leg-before decisions.`,
+        highlightBox: {
+          title: 'The Psychological Red Line: 200 Runs',
+          body: 'In the 147-year history of Test cricket, teams chasing more than 250 runs in the fourth innings have lost 78.6% of matches. The moment a fourth-innings target crosses 300, survival probability drops below 7%.'
+        }
       },
       {
-        title: '3. How Do Drivers Use Dummy Divebombs and Detection Line Tactics to Overtake?',
-        content: `**Answer:** Drivers strategically brake early before the DRS detection line to remain behind their rival at the sensor, ensuring they receive the DRS flap opening on the primary straight to execute the definitive pass.
+        title: '3. What Statistical Run-Chase Threshold Historically Separates Test Match Victories from Batting Collapses?',
+        content: `**Answer:** Historical data indicates that preserving six or more wickets at the tea interval on Day 5 while keeping the required run rate below 3.5 runs per over marks the statistical tipping point toward victory.
 
-Modern wheel-to-wheel combat also features strategic detection line games. Drivers frequently hold back on the straight prior to the detection line, deliberately staying behind their opponent so that THEY get DRS down the subsequent main straight, turning the hunter into the hunted.`
+When teams enter the final session needing more than 100 runs with four wickets in hand, the fielding captain closes the field with men clustered under the helmet at short leg and silly point.
+
+This field claustrophobia forces batsmen to play against their natural rhythm. The successful chases in Test lore—Headingley 2019, Edgbaston 2005, The Gabba 2021—shared one unifying tactical discipline: rotating the strike through backward point and third man to keep the bowling captain from setting an all-out attacking cordon.`,
+        keyMetric: {
+          stat: '3.42 rpo',
+          description: 'Optimal calculated target run rate before risk curve spikes exponentially'
+        }
       }
     ]
   },
   {
-    id: 'f1-art-09',
-    order: 9,
-    slug: 'podium-finish-and-chequered-flag-race-recap',
-    title: 'Podium Finish & Chequered Flag Race Recap',
-    subtitle: 'A thrilling 53-lap masterclass: the final stint dogfight, bonus points for fastest lap, and celebrating glory under the podium lights.',
-    category: 'Race Day',
-    sessionCode: 'CHEQUERED FLAG',
-    readTime: '6 min read',
-    publishedDate: 'Sunday, 17:45 CET',
+    id: 'cricket-art-04',
+    order: 4,
+    slug: 'the-cordon-of-truth-slip-fielding-geometry',
+    title: 'The Cordon of Truth: Anatomy and Geometry of the Test Match Slip Cordon',
+    subtitle: 'Distance arcs, reaction latency, and why dropping a third-slip chance costs an average of 42.6 Test match runs.',
+    category: 'Tactics & Seamcraft',
+    sessionCode: 'FIELD ARCHITECTURE',
+    readTime: '7 min read',
+    publishedDate: 'Autumn Edition · Oct 2026',
+    edition: 'Vol. XII · Issue 44',
     author: {
-      name: 'Liam Sterling',
-      role: 'Chief Motorsport Correspondent',
+      name: 'David Henderson',
+      role: 'Former First-Class Seamer & Senior Bowling Biomechanist',
       avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80'
     },
-    heroImageUrl: '/images/f1-art-09-monza-podium.jpg',
-    imageAlt: 'Monza Italian Grand Prix podium ceremony with drivers celebrating above thousands of passionate fans',
-    featured: true,
-    excerpt: 'From lights out to the chequered flag, recap how strategic mastery, relentless pace management, and an audacious final-lap fastest lap dash sealed a legendary Grand Prix victory.',
-    metaDescription: 'Relive the closing stint dogfight, fastest lap bonus point hunt, and official podium celebrations in this complete Monza Grand Prix race recap.',
-    tags: ['Race Recap', 'Podium', 'Fastest Lap', 'Chequered Flag', 'Victory'],
+    heroImageUrl: '/images/cricket/cricket-match-action.jpg',
+    imageAlt: 'Test match cricket field in action with wicketkeeper and three slip fielders poised in crouched catching stances',
+    featured: false,
+    excerpt: 'The slip cordon is Test cricket’s most unforgiving theatre. For three hours you may stand in numbing stillness, watching red leather thud into the keeper’s gloves. Then, in a tenth of a second, an outside edge explodes off the bat at 80 miles per hour.',
+    metaDescription: 'Geometric, physiological, and tactical examination of Test match slip catching and field placement architecture.',
+    tags: ['Slip Cordon', 'Fielding Tactics', 'Catching Geometry', 'Wicketkeeping', 'Test Cricket'],
+    interactiveType: 'field-placer',
     specs: [
-      { label: 'Race Winning Margin', value: '+1.428 Seconds', delta: 'After 53 laps' },
-      { label: 'Fastest Lap Time', value: '1:21.044', note: 'Set on Lap 52 with Softs' },
-      { label: 'Total Race Time', value: '1h 22m 14.891s', note: 'Average 224.8 km/h' },
-      { label: 'Overtakes Recorded', value: '47 Passes', note: 'Dry race conditions' }
+      { label: 'Cordon Radial Arc', value: '21.5 metres', delta: 'From batsman stumps' },
+      { label: 'Average Edge Speed', value: '118 km/h', note: 'Off thick outside edge' },
+      { label: 'Fielder Reaction Time', value: '0.34 seconds', note: 'Saccadic eye latency' },
+      { label: 'Cost of Dropped Catch', value: '42.6 Runs', delta: 'Historical average' }
     ],
+    quote: {
+      text: 'In the slips, relaxation is your only weapon. If your shoulders are tense, your hands become iron pots. You must watch the ball leave the bowler’s hand and expect every delivery to fly to you.',
+      author: 'Mark Waugh',
+      role: '181 Test Catches · 0.81 Catching Ratio'
+    },
     sections: [
       {
-        title: '1. How Did the Race Leader Defend Against Fresher Medium Tyres in the Closing Stint?',
-        content: `**Answer:** The race leader protected victory on 28-lap-old Hard tyres by placing the car defensively at Turn 1 and exploiting aerodynamic wake turbulence to erode the challenger's front downforce.
+        title: '1. What Mathematical Arc Coordinates Dictate Slip Cordon Spacing Across Different Pitch Paciness?',
+        content: `**Answer:** Slip cordon spacing follows a parabolic arc centered 21.5 metres from the batting crease, where each subsequent slip fielder steps back 0.6 metres and angles outward by 12 degrees to account for the wider dispersion angle of thicker outside edges.
 
-With eight laps remaining, the race hung on a knife-edge. The race leader on 28-lap-old Hard tyres saw their lead slashed by three-tenths per lap by the charging challenger on fresher Medium rubber.
+First slip stands closest to the wicketkeeper, positioned roughly half a step behind the gloveman’s heels to avoid visual obstruction. Second slip takes a step deeper because edges off defensive prods travel with greater velocity and flatter trajectory.
 
-Telemetry showed the chaser extracting maximum traction from Turn 7, closing the delta down to 1.4 seconds with two laps to go. However, as the dirty air turbulence began stripping away front wing downforce, the leader defended the inside line into Turn 1 with clinical precision.`
+On fast, bouncy Australian wickets like the WACA or Gabba, the entire cordon retreats two metres further back into the outfield to give fielders extra hundredths of a second to react to edges flying above waist height. On sluggish subcontinental decks, the cordon creeps forward to 18 metres to scoop dying edges off the turf.`,
+        keyMetric: {
+          stat: '0.6 m',
+          description: 'Step-back stagger distance between adjacent slip fielders'
+        }
       },
       {
-        title: '2. Why Do Teams Make a Late Pit Stop to Hunt the Fastest Lap Bonus Point?',
-        content: `**Answer:** When running with a sufficient gap over trailing cars (greater than the 21.4-second pit loss), teams pit for fresh soft tyres and empty batteries on the penultimate lap to claim the championship bonus point.
+        title: '2. Why Do Modern Test Captains Prefer a Split Cordon Over Five Dense Slips on Flat Tracks?',
+        content: `**Answer:** Modern captains deploy split cordons—such as first slip, third slip, and a wide gully—because high-speed Hawkeye tracking shows that modern bats deflect edges into distinct geometric cones, leaving the traditional second-slip zone redundant when the ball doesn't carry.
 
-Behind the podium battle, P4 held a 28-second cushion over P5. Sensing a free pit stop window, the team radioed: "Box, box for Softs." Emerging on lap 51 with blazing fresh red-walled tyres, the driver uncorked full battery deployment to obliterate the previous fastest lap by 1.2 seconds, claiming the world championship bonus point.`
+Twenty years ago, traditional captains demanded a textbook wall of four contiguous slips standing shoulder-to-shoulder. However, ball-tracking studies over thousands of Test deliveries reveal that batsmen rarely edge into second slip when playing with soft hands.
+
+Thick edges fly high toward third slip and gully, while thin snicks carry low to first slip or the keeper. Leaving second slip vacant allows the fielding captain to post an extra catcher at backward point or short mid-wicket, choking the batsman’s scoring avenues without reducing catching probability.`,
+        highlightBox: {
+          title: 'The Slip Catcher’s Ready Position',
+          body: 'Biomechanic analyses demonstrate that resting hands on knees before the ball is bowled increases reaction latency by 0.08 seconds. Elite catchers hover with wrists relaxed between knees and weight on the balls of their feet.'
+        }
       },
       {
-        title: '3. Why Do F1 Drivers Intentionally Pick Up Rubber Marbles on the Cooldown Lap?',
-        content: `**Answer:** Drivers drive through off-line rubber marbles on the in-lap to fuse hot molten rubber onto tyre treads, adding up to 2 kg of ballast to guarantee compliance with the FIA 798 kg minimum weight limit.
+        title: '3. How Do Slip Fielders Train Visual Saccadic Eye Movements to React Under 0.35 Seconds?',
+        content: `**Answer:** Slip fielders train visual saccades using high-speed strobe goggles and deflection boards, conditioning the brain to track the ball from release point directly through the micro-instant of bat contact without blinking.
 
-As the chequered flag dropped, drivers were immediately instructed over team radio to "pick up rubber." Driving off-line through the marble zones forces molten rubber debris to stick onto hot tyres, adding up to 2 kilograms of artificial weight to ensure the car safely complies with the FIA 798 kg minimum weight limit during post-race inspection.`
+The human eye requires approximately 200 milliseconds simply to identify a change in trajectory. When a ball travels at 140 km/h, the entire flight from bat edge to slip hands lasts roughly 350 milliseconds.
+
+This leaves less than 150 milliseconds for the muscular system to adjust feet, extend elbows, and form a soft catching cup with the palms. Elite slip catchers never look at the batsman’s feet or body; their gaze is locked onto the red sphere from the bowler's fingers, allowing their peripheral vision to detect the white blur of the bat edge.`,
+        keyMetric: {
+          stat: '350 ms',
+          description: 'Total flight duration of an outside edge from bat to second slip'
+        }
       }
     ]
   },
   {
-    id: 'f1-art-10',
-    order: 10,
-    slug: 'post-race-scrutineering-parc-ferme-constructors-points',
-    title: 'Post-Race Scrutineering, Parc Fermé, and Constructors Points',
-    subtitle: 'Fuel sample chemical chromatography, skid block plank thickness micrometers, and the mathematical championship consequences of Sunday’s result.',
-    category: 'Tech',
-    sessionCode: 'SCRUTINEERING',
-    readTime: '7 min read',
-    publishedDate: 'Sunday, 19:30 CET',
+    id: 'cricket-art-05',
+    order: 5,
+    slug: 'the-nightwatchman-solitude-and-sacred-duty',
+    title: 'The Nightwatchman’s Solitude: The Most Unglamorous, Sacred Role in Test Cricket',
+    subtitle: 'Walking out into the shadows at 5:42 PM to face 90 mph bouncers with bruised knuckles so the star number four can sleep easy.',
+    category: 'Longform Essays',
+    sessionCode: 'CRICKET ESSAYS',
+    readTime: '10 min read',
+    publishedDate: 'Autumn Edition · Oct 2026',
+    edition: 'Vol. XII · Issue 44',
     author: {
-      name: 'Dr. Marcus Vance',
-      role: 'Principal Aerodynamicist & Technical Analyst',
-      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'
+      name: 'Priya Narayanan',
+      role: 'Subcontinent Cricket Analyst & Longform Essayist',
+      avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80'
     },
-    heroImageUrl: '/images/f1-art-10-parc-ferme.jpg',
-    imageAlt: 'Formula 1 cars in FIA Parc Fermé scrutineering bay for post-race technical inspection and weight checks',
+    heroImageUrl: '/images/cricket/cricket-dusk-floodlights.jpg',
+    imageAlt: 'Cricket ground bathed in golden dusk light with looming floodlights illuminating the green pitch turf',
     featured: false,
-    excerpt: 'The Grand Prix isn’t truly over until the FIA Technical Delegate issues Document 64. Step inside the rigorous post-race scrutineering tests that protect the integrity of Formula 1.',
-    metaDescription: 'Inspect the FIA Parc Fermé post-race scrutineering process, 10mm titanium skid plank wear tests, fuel chromatography, and constructor points.',
-    tags: ['Scrutineering', 'FIA', 'Parc Ferme', 'Plank Wear', 'Constructors Points'],
+    excerpt: 'It is 5:42 PM. The shadows across the grandstand have stretched until they kiss the pitch. A wicket has just fallen, and in the pavilion dressing room, the premier batsman has his pads strapped, nerves coiled tight. Instead, the coach points to a battle-hardened number ten fast bowler.',
+    metaDescription: 'An evocative literary exploration into the sacrificial culture, tactical psychology, and romantic lore of the Test cricket nightwatchman.',
+    tags: ['Nightwatchman', 'Test Traditions', 'Cricket Culture', 'Longform', 'Pavilion Life'],
+    interactiveType: 'pitch-lab',
     specs: [
-      { label: 'Minimum Weight Limit', value: '798.0 kg', note: 'Car + Driver combined' },
-      { label: 'Plank Wear Allowance', value: '10.0 mm ± 0.2 mm', note: 'Max 1.0mm wear permitted' },
-      { label: 'Fuel Sample Required', value: '1.00 Litre', note: 'Gas chromatography test' },
-      { label: 'Constructor Points', value: '44 Points Claimed', delta: '+12 pts in standings' }
+      { label: 'Standard Light Reading', value: '420 Lux', delta: 'Fading dusk threshold' },
+      { label: 'Short Ball Frequency', value: '68% of Balls', note: 'Fast bowler hostility' },
+      { label: 'Survival Rate to Stumps', value: '71.2%', delta: 'Historical average' },
+      { label: 'Highest Nightwatchman Score', value: '201* Runs', note: 'Jason Gillespie (2006)' }
     ],
+    quote: {
+      text: 'You don’t walk out there thinking about runs. You walk out knowing that every blow to your chest, every cracked rib, is one less bruise for the batsmen who will win you the match tomorrow.',
+      author: 'Jack Russell',
+      role: 'Legendary England Wicketkeeper'
+    },
     sections: [
       {
-        title: '1. How Does the FIA Enforce the Strict 798 kg Minimum Weight in Parc Fermé?',
-        content: `**Answer:** Post-race scrutineering weighs both driver and car on calibrated digital load cells; falling short by even 100 grams results in strict, mandatory disqualification under Technical Article 4.1.
+        title: '1. What Tactical Circumstances Warrant Deploying a Nightwatchman with 15 Minutes Remaining in the Day?',
+        content: `**Answer:** A nightwatchman is deployed when a wicket falls within the final 20 minutes or four overs of a day’s play, insulating the recognized specialist batsman from the psychological and visual hazards of facing fresh, aggressive bowling under failing natural light.
 
-Minutes after stepping out of the cockpit, all top-finishers are guided to the official FIA scales while holding their steering wheel, helmet, HANS device, and racing overalls.
+The twilight window is the most dangerous period in red-ball cricket. Fast bowlers summon their final reserve of adrenaline, knowing they only have eighteen deliveries left before stumps.
 
-The car itself is hoisted onto digital load cells calibrated to within 100 grams. If a car weighs 797.9 kg—even by a microscopic margin of 100 grams—the technical delegate has no discretionary leeway; instant disqualification follows under Article 4.1 of the Technical Regulations.`
+If a specialist number three or four walks out, their eyesight requires ten balls to adjust to the dimming contrast between the dark red leather ball and the dusky grandstand background. Losing a premier batsman to a late snick can derail an entire five-day campaign; losing a bowling all-rounder is an acceptable tactical casualty.`,
+        keyMetric: {
+          stat: '18 balls',
+          description: 'Typical number of deliveries a nightwatchman must survive to reach stumps'
+        }
       },
       {
-        title: '2. Why Does Excessive Titanium Skid Block Plank Wear Cause Instant Disqualification?',
-        content: `**Answer:** The FIA measures four designated inspection holes in the 10.0 mm underfloor plank with digital micrometers; exceeding 1.0 mm of plank wear proves the car ran illegally low to generate unapproved downforce.
+        title: '2. How Does Nightwatchman Defense Affect the Bowling Side’s Over-Rate and Field Strategy?',
+        content: `**Answer:** The presence of a nightwatchman forces the bowling captain into an aggressive, crowded cordon with short legs and silly mid-offs, slowing down the over-rate while often tempting fast bowlers to abandon good length lines in favor of unproductive head-hunting bouncers.
 
-Underneath every Formula 1 car sits a Jabroc laminated beechwood plank equipped with titanium skid blocks. The plank starts with an exact thickness of 10.0 mm.
+Bowlers can rarely resist the urge to intimidate a tailender. Instead of pitching the ball on a good length to target off-stump, fast bowlers often dig the ball in short, seeking a throat ball or rib-cage blow.
 
-To prevent teams from running their ground-effect floors dangerously low to the ground to generate illegal downforce, the FIA measures four designated inspection holes using digital depth micrometers. If wear exceeds 1.0 mm (reducing thickness below 9.0 mm), the car is deemed illegal, as occurred in dramatic disqualifications at Austin.`
+However, bouncers are notoriously difficult to control in fading light. Deliveries sail harmlessly over the nightwatchman’s ducking helmet into the keeper’s gloves, consuming valuable overs and running down the clock until the umpires check their light meters and call stumps.`,
+        highlightBox: {
+          title: 'The Legend of Jason Gillespie’s Double Hundred',
+          body: 'In April 2006 at Chittagong, Australian fast bowler Jason Gillespie walked out as a nightwatchman against Bangladesh. Over nine grueling hours, he scored an unbeaten 201 runs—the highest individual score by a nightwatchman in Test history.'
+        }
       },
       {
-        title: '3. How Does Post-Race Fuel Gas Chromatography Confirm Championship Legality?',
-        content: `**Answer:** Scrutineers extract 1.0 litre of fuel and run gas chromatography against the pre-season chemical fingerprint; any illegal additives lead to immediate exclusion before points are officially ratified.
+        title: '3. Why Has the Pure Nightwatchman Role Survived in the Era of Modern T20 Aggression?',
+        content: `**Answer:** The role has survived because Test cricket remains an asymmetrical war of attrition where the value of a top-order batsman’s fresh mind on a sunny Day 2 morning vastly outweighs any pride associated with traditional batting order etiquette.
 
-The final test is fuel sampling. Scrutineers extract a 1.0-litre sample directly from the fuel tank cell. Using gas chromatography, the chemical fingerprint of the fuel is matched against the reference sample submitted before the season. Any unauthorised anti-knock additives or density discrepancies leads to immediate exclusion.
+Even in an age where Bazball and high-tempo batting have revolutionized run rates, modern Test captains recognize the sanctity of the morning reset.
 
-With all ten cars cleared and technical documents ratified, constructors points are officially awarded, shaking up the title race and establishing the development benchmark heading into the next Grand Prix.`
+Sleeping on 2 not out overnight produces fitful anxiety, adrenaline surges, and mental fatigue. By allowing a fearless lower-order bowler to absorb the late-evening hostility, the team guarantees that their key run-maker begins Day 2 with fresh coffee, a flat pitch, and a full day’s strategy ahead.`,
+        keyMetric: {
+          stat: '71.2%',
+          description: 'Probability of a team winning or drawing when their nightwatchman survives to Day 2'
+        }
+      }
+    ]
+  },
+  {
+    id: 'cricket-art-06',
+    order: 6,
+    slug: 'the-thermodynamics-of-reverse-swing',
+    title: 'The 150 km/h Art of Reverse Swing: Thermodynamics of Scuffed Leather and Boundary Layers',
+    subtitle: 'From Sarfraz Nawaz and Wasim Akram to modern subcontinent dust: how keeping one hemisphere mirror-smooth weaponizes the old ball.',
+    category: 'Tactics & Seamcraft',
+    sessionCode: 'SEAMCRAFT',
+    readTime: '9 min read',
+    publishedDate: 'Autumn Edition · Oct 2026',
+    edition: 'Vol. XII · Issue 44',
+    author: {
+      name: 'David Henderson',
+      role: 'Former First-Class Seamer & Senior Bowling Biomechanist',
+      avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80'
+    },
+    heroImageUrl: '/images/cricket/cricket-leather-ball.jpg',
+    imageAlt: 'Vintage weathered leather cricket ball showcasing one scuffed abrasive hemisphere and one polished shiny side',
+    featured: false,
+    excerpt: 'To the uninitiated, an old 50-over cricket ball is a battered scrap of scuffed hide. To a master of reverse swing, it is a precision aerodynamic missile capable of defying normal fluid dynamics and careening toward middle stump at the speed of a reflex.',
+    metaDescription: 'Detailed fluid dynamics and ball-maintenance science behind reverse swing bowling in Test match cricket.',
+    tags: ['Reverse Swing', 'Fluid Dynamics', 'Wasim Akram', 'Old Ball Tactics', 'Bowling Mastery'],
+    interactiveType: 'seam-simulator',
+    specs: [
+      { label: 'Critical Ball Age', value: '45 to 65 Overs', delta: 'Optimal degradation' },
+      { label: 'Reverse Inswing Angle', value: '3.8° Late Break', note: 'Final 4 metres' },
+      { label: 'Surface Roughness Delta', value: '280 Microns', note: 'Rough vs Shiny side' },
+      { label: 'Minimum Speed Threshold', value: '136 km/h', note: '84.5 mph boundary layer' }
+    ],
+    quote: {
+      text: 'Conventional swing is a polite conversation with the batsman outside off-stump. Reverse swing is an assault on his front toe and his middle stump.',
+      author: 'Waqar Younis',
+      role: 'Master of Reverse Swing · 373 Test Wickets'
+    },
+    sections: [
+      {
+        title: '1. What Aerodynamic Pressure Differential Triggers Reverse Swing Toward the Smooth Shiny Hemisphere?',
+        content: `**Answer:** Reverse swing occurs when the boundary layer of air on the rough hemisphere becomes fully turbulent earlier than on the shiny side, causing the turbulent layer to stay attached longer around the curve of the ball and creating lower pressure that pulls the ball toward the shiny hemisphere.
+
+In conventional swing with a new ball, the seam trips the air on one side, creating low pressure on the seam side. However, once the ball crosses a critical speed threshold (typically around 135 km/h) and has one intensely roughened face, fluid mechanics invert.
+
+The abrasive texture on the scuffed side energizes the laminar boundary layer into turbulence right at the front of the ball. This turbulent air possesses high kinetic energy and clings to the ball’s contour until far past the equator. Meanwhile, the air on the smooth side separates early, generating a high-pressure wake. The net pressure differential violently shoves the ball in the opposite direction of conventional swing—often with vicious, late swerve in the final four metres of flight.`,
+        keyMetric: {
+          stat: '135 km/h',
+          description: 'Critical air speed velocity required to trigger boundary layer separation inversion'
+        }
+      },
+      {
+        title: '2. Why Does High Humidity Delay the Initiation of Reverse Swing in Test Matches?',
+        content: `**Answer:** High atmospheric humidity and lush outfields dampen the rough hemisphere, smoothing out micro-fissures in the leather and increasing moisture content that prevents the boundary layer from tripping into early turbulence.
+
+Reverse swing thrives in dry, baking heat—the arid dustbowls of Karachi, Chennai, and Dubai, or sunbaked Australian afternoons.
+
+When the outfield is dry, constant contact with abrasive soil acts like fine sandpaper, raising the fibrous grain of the cowhide. If the grass is damp with morning dew or heavy atmospheric mist, moisture swells the leather fibers, flattening the rough hemisphere and restoring symmetrical airflow around the ball.`,
+        highlightBox: {
+          title: 'The Art of Legal Ball Maintenance',
+          body: 'Under MCC Law 41.3, fielders may polish the ball on their flannels using sweat, provided no artificial substances (mints, lip balm, resin) are applied. The entire fielding unit assigns one designated fielder to keep the dry hemisphere pristine.'
+        }
+      },
+      {
+        title: '3. How Do Batsmen Guard Against 145 km/h Reverse Inswingers Aimed at the Base of the Stumps?',
+        content: `**Answer:** Batsmen combat late reverse inswing by shortening their forward stride, opening their front hip slightly, and watching the bowler’s thumb and the position of the shiny hemisphere in the run-up to anticipate the inward curve.
+
+When the ball is reversing, committing to a traditional big front-foot stride is fatal; the ball curves late around the front pad, pinning the batsman dead in front of leg-stump.
+
+Great players like Sachin Tendulkar and Brian Lara adjusted by batting deeper in their crease. By standing half a foot behind the popping crease, they gained an extra 0.04 seconds to read the late dip. They also scrutinized the ball in the bowler’s hand: if the bowler ran in with the shiny side facing outward, the ball was primed to tail inward toward off-stump.`,
+        keyMetric: {
+          stat: '0.04 sec',
+          description: 'Critical extra reaction window gained by batting 30 cm deeper in the crease'
+        }
+      }
+    ]
+  },
+  {
+    id: 'cricket-art-07',
+    order: 7,
+    slug: 'the-art-of-the-leave-sublime-discipline-of-test-cricket',
+    title: 'The Art of Leaving: The Sublime Discipline That Separates Test Titans from White-Ball Mercenaries',
+    subtitle: 'Why Steve Smith, Cheteshwar Pujara, and Shivnarine Chanderpaul treat the delivery they do not touch as their greatest masterpiece.',
+    category: 'Player Profiles',
+    sessionCode: 'BATTING CRAFT',
+    readTime: '8 min read',
+    publishedDate: 'Autumn Edition · Oct 2026',
+    edition: 'Vol. XII · Issue 44',
+    author: {
+      name: 'Alastair Vance',
+      role: 'Chief Cricket Writer & Former Test Match Analyst',
+      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'
+    },
+    heroImageUrl: '/images/cricket/cricket-willow-bat.jpg',
+    imageAlt: 'Handcrafted English willow cricket bat showing straight natural grains and red cherry leather strike marks',
+    featured: false,
+    excerpt: 'In an era consumed by the 360-degree ramp, the switch-hit, and the hundred-metre six, the most radical act in cricket is standing perfectly still and watching a 90 mph delivery whisper past off-stump into the keeper’s gloves without playing a shot.',
+    metaDescription: 'Biomechanical and psychological study of leaving the ball in Test match cricket and off-stump awareness.',
+    tags: ['The Art of Leaving', 'Batting Discipline', 'Steve Smith', 'Test Batting', 'Off Stump'],
+    interactiveType: 'field-placer',
+    specs: [
+      { label: 'Pro Leave Percentage', value: '38.4% of Balls', delta: 'Top 3 Test Batsmen' },
+      { label: 'Off-Stump Clearance', value: '2.4 cm Margin', note: 'Elite judgement zone' },
+      { label: 'Bowler Energy Drain', value: '18% Higher', note: 'When deliveries left' },
+      { label: 'Average Balls per Wicket', value: '164 Deliveries', note: 'Top defensive anchors' }
+    ],
+    quote: {
+      text: 'You don’t judge a Test batsman by the boundaries he hits before lunch. You judge him by the 40 balls outside off-stump that he leaves completely alone.',
+      author: 'Geoffrey Boycott',
+      role: '8,114 Test Runs · Master of Defense'
+    },
+    sections: [
+      {
+        title: '1. How Does Knowing Off-Stump’s Exact Location Enable Batsmen to Leave Deliveries 3 Millimetres Wide?',
+        content: `**Answer:** Batsmen master millimeter-close leaves through proprioceptive muscle memory calibrated by their stance alignment, ensuring their back foot remains anchored as an absolute spatial reference coordinate for where off-stump stands behind them.
+
+When an elite Test batsman takes guard, they do not merely scratch a mark on the turf. They align their back heel with the outside of off-stump.
+
+Throughout their innings, every movement is relative to that anchor. Even when the ball pitches on a fifth-stump line and nips back violently toward off-stump, a batsman with pristine off-stump awareness knows without looking that the ball’s trajectory will miss the bail by half an inch. They drop the wrists, pull the bat behind their back leg, and watch the leather pass harmlessly.`,
+        keyMetric: {
+          stat: '2.4 cm',
+          description: 'Average margin of error elite Test openers give between ball and off-stump'
+        }
+      },
+      {
+        title: '2. Why Has White-Ball T20 Power-Hitting Eroded the Defensive Leaving Discipline in Modern Test Matches?',
+        content: `**Answer:** T20 cricket conditions batsmen to seek bat-on-ball contact on every delivery to prevent dot-ball accumulation, rewiring their neurological reflexes to chase wide balls that lead directly to outside edges in red-ball Test conditions.
+
+In 20-over cricket, a ball left outside off-stump is a squandered scoring opportunity. Batsmen develop an instinctive reach, lunging across the crease with hands away from the body.
+
+When these same batsmen face a fresh Duke or Kookaburra ball in the first session of a Test match, that hardwired compulsion betrays them. Bowlers place three slips and two gullies on fourth-stump lines, patiently feeding tempting wide lengths. The modern batsman’s hands instinctively flash at the ball, resulting in an outside edge caught at third slip.`,
+        highlightBox: {
+          title: 'The Steve Smith Leaving Choreography',
+          body: 'Steve Smith’s theatrical flairs—the sword-fighting flourishes and dramatic pirouettes after leaving—serve a vital neurological function: they violently dissipate nervous tension and lock his balance over his center of gravity.'
+        }
+      },
+      {
+        title: '3. What Visual Cues Does a Batsman Process in the First 120 Milliseconds of Ball Flight?',
+        content: `**Answer:** In the initial 120 milliseconds after bowler release, a batsman’s visual cortex processes arm height, seam angle, and flight trajectory angle, deciding whether to leave or commit to forward defense before the ball reaches the halfway point of the pitch.
+
+By the time the ball pitches, it is too late to formulate a decision to leave; muscle recruitment requires at least 180 milliseconds.
+
+Elite leave specialists make their decision during the ball’s upward trajectory out of the bowler’s hand. If the trajectory vector projects the ball outside the corridor of uncertainty with outward angle, the batsman’s cognitive system immediately aborts the downswing, pulling the bat safely inward to the chest.`,
+        keyMetric: {
+          stat: '120 ms',
+          description: 'Neurological window in which the decision to leave or play is finalized'
+        }
+      }
+    ]
+  },
+  {
+    id: 'cricket-art-08',
+    order: 8,
+    slug: 'eden-gardens-2001-the-epic-376-run-miracle',
+    title: 'Eden Gardens 2001: The Epic 376-Run Miracle That Shattered Australian Hegemony',
+    subtitle: 'Following-on against Steve Waugh’s 16-Test winning juggernaut, VVS Laxman and Rahul Dravid batted an entire day into sporting immortality.',
+    category: 'Cricket History',
+    sessionCode: 'LEGENDARY MATCHES',
+    readTime: '11 min read',
+    publishedDate: 'Autumn Edition · Oct 2026',
+    edition: 'Vol. XII · Issue 44',
+    author: {
+      name: 'Priya Narayanan',
+      role: 'Subcontinent Cricket Analyst & Longform Essayist',
+      avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80'
+    },
+    heroImageUrl: '/images/cricket/cricket-crowd-grandstand.jpg',
+    imageAlt: 'A packed cricket stadium grandstand with passionate fans under towering concrete tiers celebrating test match cricket',
+    featured: false,
+    excerpt: 'On the morning of Day 4 at Eden Gardens in March 2001, Australia were on the cusp of conquering the final frontier. India were following on, still 20 runs behind with four wickets down. What unfolded over the next 90 overs remains the most staggering act of collective defiance in the history of international sport.',
+    metaDescription: 'Retrospective historical longform essay analyzing the historic 2001 Eden Gardens Test match between India and Australia.',
+    tags: ['Eden Gardens', 'VVS Laxman', 'Rahul Dravid', 'Shane Warne', 'Ashes Rivalry'],
+    interactiveType: 'pitch-lab',
+    specs: [
+      { label: 'Partnership Total', value: '376 Unbroken Runs', delta: 'Day 4: 335 Runs' },
+      { label: 'VVS Laxman Score', value: '281 (452 Balls)', note: '44 Boundaries' },
+      { label: 'Rahul Dravid Score', value: '180 (353 Balls)', note: '20 Boundaries' },
+      { label: 'Overs Batted Day 4', value: '90 Overs / 0 Wickets', delta: 'Heat: 41.5 °C' }
+    ],
+    quote: {
+      text: 'I didn’t look at the scoreboard once between lunch and tea. I looked only at Rahul at the other end. We nodded at each other after every ball, reminding ourselves that we were fighting for the pride of a billion people.',
+      author: 'VVS Laxman',
+      role: '281 at Eden Gardens'
+    },
+    sections: [
+      {
+        title: '1. How Did VVS Laxman’s Inside-Out Whipped Drive Neutralize Shane Warne’s Around-the-Wicket Rough?',
+        content: `**Answer:** VVS Laxman neutralized Shane Warne’s around-the-wicket attack by advancing diagonally across his stumps to meet the turning leg-break on the full, whipping deliveries pitched outside leg-stump through extra-cover and mid-wicket with rubberized wrist extension.
+
+Shane Warne’s master strategy in India was bowling into the bowler’s footmarks outside a right-hander’s leg-stump, producing vicious spit and turn toward the gloves.
+
+Most batsmen succumbed to bat-pad catches. Laxman transformed the bowler’s weapon into an ambush. With wrists forged in badminton and tennis, he opened the blade at the moment of impact, driving against the spin through the vacant off-side. Warne was forced to disperse his slip cordon, completely unraveling Australia’s psychological strangulation.`,
+        keyMetric: {
+          stat: '335 runs',
+          description: 'Runs scored by Laxman and Dravid on Day 4 without losing a single wicket'
+        }
+      },
+      {
+        title: '2. Why Was Sourav Ganguly’s Decision to Promote Laxman to Number Three a Watershed Tactical Masterstroke?',
+        content: `**Answer:** Promoting Laxman ahead of Rahul Dravid was a masterstroke because Laxman had shown unmatched fluency against Glenn McGrath during India’s first innings 59, and his counter-attacking tempo broke Australia’s suffocating field placements before they could settle into defensive lines.
+
+Traditionally, Indian batting orders were rigidly conservative. Rahul Dravid was the designated number three, the immovable rock.
+
+However, captain Sourav Ganguly recognized that India could not save the match through passive defense alone; they needed to put runs on the board to wipe out the 274-run deficit. Laxman’s promotion injected instant swagger. By attacking McGrath’s fourth-stump channel with delicate late cuts and back-foot punches, Laxman forced Steve Waugh to place fielders on the fence, easing the pressure on Dravid when he walked in at number six.`,
+        highlightBox: {
+          title: 'The Physical Toll of Kolkata Heat',
+          body: 'With temperatures exceeding 41°C and humidity at 82%, Dravid and Laxman lost an estimated 4.5 kilograms of fluid each during Day 4. In the final session, medical staff administered intravenous electrolytes during drinks breaks.'
+        }
+      },
+      {
+        title: '3. What Broader Impact Did Eden Gardens Have on the Cultural Trajectory of World Cricket?',
+        content: `**Answer:** Eden Gardens dismantled the myth of Western invincibility in Test cricket, inspiring a new era of subcontinental self-belief that transformed India into a global powerhouse on and off the field.
+
+Australia had arrived in India having won 16 consecutive Test matches—the longest winning streak in cricket history. Victory at Eden Gardens seemed preordained.
+
+When Harbhajan Singh trapped Glenn McGrath LBW on Day 5 to seal a 171-run victory, it marked only the third time in 124 years that a team had won a Test after being forced to follow on. It signaled to the cricketing universe that the traditional hierarchies of cricket were shifting east forever.`,
+        keyMetric: {
+          stat: '171 runs',
+          description: 'Margin of India’s miraculous victory after following on 274 runs behind'
+        }
+      }
+    ]
+  },
+  {
+    id: 'cricket-art-09',
+    order: 9,
+    slug: 'the-biomechanics-of-jasprit-bumrah',
+    title: 'The Biomechanics of Jasprit Bumrah: Hyper-Extension, Hypersonic Arm Speed, and Deceptive Release',
+    subtitle: 'Decoding the short eight-step run-up, hyperextended elbow lever, and the unnatural release point that terrifies opening batsmen worldwide.',
+    category: 'Player Profiles',
+    sessionCode: 'BOWLING KINEMATICS',
+    readTime: '8 min read',
+    publishedDate: 'Autumn Edition · Oct 2026',
+    edition: 'Vol. XII · Issue 44',
+    author: {
+      name: 'David Henderson',
+      role: 'Former First-Class Seamer & Senior Bowling Biomechanist',
+      avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80'
+    },
+    heroImageUrl: '/images/cricket/cricket-ground-stadium.jpg',
+    imageAlt: 'Vast international cricket stadium with immaculate circular turf boundary rope and emerald outfield',
+    featured: false,
+    excerpt: 'By every conventional coaching manual printed in the last century, Jasprit Bumrah’s bowling action is an anatomical impossibility. A stuttering eight-step stroll, rigid locked arms, and an elbow hyperextension that produces 145 km/h thunderbolts with zero momentum transfer.',
+    metaDescription: 'Biomechanical analysis of Jasprit Bumrah’s unique fast-bowling action, release mechanics, and physics of trajectory.',
+    tags: ['Jasprit Bumrah', 'Biomechanics', 'Bowling Action', 'Fast Bowling', 'Yorker Physics'],
+    interactiveType: 'seam-simulator',
+    specs: [
+      { label: 'Run-up Length', value: '15.2 metres', delta: '8 Strides Only' },
+      { label: 'Elbow Hyperextension', value: '12.8° Angle', note: 'Natural physiological laxity' },
+      { label: 'Release Point Proximity', value: '32 cm Closer', note: 'Beyond popping crease' },
+      { label: 'Shoulder Rotational Speed', value: '1,420 deg/sec', note: 'Elastic recoil' }
+    ],
+    quote: {
+      text: 'Facing Bumrah is an optical nightmare. With normal bowlers, their body tells you when the ball is coming. With Bumrah, the ball suddenly explodes from behind his head before your brain has registered his jump.',
+      author: 'Joe Root',
+      role: 'Former England Captain · 12,000+ Test Runs'
+    },
+    sections: [
+      {
+        title: '1. How Does Bumrah’s 8-Step Run-Up Generate 145 km/h Pace Without Conventional Momentum Transfer?',
+        content: `**Answer:** Bumrah compensates for his brief run-up through explosive rotational trunk torque and elastic myofascial pre-stretch across his torso and shoulder, converting his upper body into a coiled catapult rather than relying on linear running speed.
+
+Traditional fast bowlers like Brett Lee or Shoaib Akhtar sprinted 35 metres to build linear kinetic momentum of roughly 7 metres per second.
+
+Bumrah jogs casually, reaching barely 4.2 metres per second. However, in his penultimate stride, his core undergoes massive counter-rotation. His hips snap open 45 degrees ahead of his shoulders, creating maximum stretch in the latissimus dorsi and abdominal obliques. When his braced front leg locks into the turf, that stored elastic energy whips through his upper body like a cracking bullwhip.`,
+        keyMetric: {
+          stat: '1,420°/s',
+          description: 'Angular shoulder rotational velocity during the ball release phase'
+        }
+      },
+      {
+        title: '2. What Biomechanical Hyperextension Angle at the Elbow Joint Creates Late Whiplash Velocity?',
+        content: `**Answer:** High-speed 3D motion capture reveals Bumrah possesses a natural anatomical elbow hyperextension of roughly 12.8 degrees that whips straight at delivery, catapulting the ball forward with whip-like mechanical advantage while fully complying with the ICC 15-degree rule.
+
+Many amateur observers mistakenly confuse hyperextension with an illegal throwing jerk. An illegal throw involves bending the elbow and then actively extending it.
+
+Bumrah’s arm remains locked rigid throughout his delivery stride. Because of inherent joint laxity, his forearm bows backwards under centrifugal load. At the exact instant of release, the joint recoils forward into straight alignment, imparting an extra 5 to 7 km/h of ball velocity with zero strain on his elbow ligaments.`,
+        highlightBox: {
+          title: 'The ICC 15-Degree Biomechanical Standard',
+          body: 'Independent kinematic testing at the National Cricket Academy in Bangalore confirmed that Bumrah’s elbow flexion during the delivery swing remains well within the legal 8.4-degree boundary, far below the ICC’s 15-degree tolerance limit.'
+        }
+      },
+      {
+        title: '3. Why Does Bumrah’s Release Point Being 30 cm Closer to the Batsman Reduce Reaction Time by 0.04 Seconds?',
+        content: `**Answer:** Because Bumrah delivers the ball with a low chest-on angle and a massive front-leg reach, the ball leaves his fingertips nearly a third of a metre closer to the batsman than traditional high-arm bowlers, robbing the batsman of 40 critical milliseconds of optical processing time.
+
+When a standard tall seamer releases the ball from a height of 2.25 metres behind the crease, the total flight distance to the batsman is roughly 19.8 metres.
+
+Bumrah releases from 1.94 metres height, leaning far over his front knee with his hand past the popping crease. The flight distance shrinks to 19.1 metres. At 142 km/h, this 70 cm differential shaves 0.04 seconds off the batsman's reaction window—the exact margin between an edge into the slips and a cleanly middled defensive block.`,
+        keyMetric: {
+          stat: '0.04 sec',
+          description: 'Reduction in batsman reaction latency caused by forward release proximity'
+        }
+      }
+    ]
+  },
+  {
+    id: 'cricket-art-10',
+    order: 10,
+    slug: 'village-green-to-test-arena-pastoral-romance-of-red-ball-cricket',
+    title: 'Village Green to Test Arena: The Timeless Pastoral Romance of Red-Ball Cricket',
+    subtitle: 'In an age of franchise blitzes and twenty-over pyrotechnics, the white flannels and tea intervals remain sport’s purest sanctuary.',
+    category: 'Longform Essays',
+    sessionCode: 'PASTORAL HERITAGE',
+    readTime: '9 min read',
+    publishedDate: 'Autumn Edition · Oct 2026',
+    edition: 'Vol. XII · Issue 44',
+    author: {
+      name: 'Alastair Vance',
+      role: 'Chief Cricket Writer & Former Test Match Analyst',
+      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'
+    },
+    heroImageUrl: '/images/cricket/cricket-village-green.jpg',
+    imageAlt: 'Idyllic English village cricket green with wooden sightscreen, thatch pavilion, and white-clad cricketers in afternoon sunshine',
+    featured: false,
+    excerpt: 'Listen carefully between overs on an English village green or an Australian country oval. There is no synthetic DJ brass, no flashing LED countdowns, no corporate brand jingles. There is only the clock-tower bell, the rustle of weeping willows in the breeze, and the unmistakable, resonant thud of English willow striking seasoned leather.',
+    metaDescription: 'A nostalgic and cultural celebration of cricket’s pastoral roots, five-day Test match architecture, and timeless sporting heritage.',
+    tags: ['Village Cricket', 'Cricket Heritage', 'Pastoral Sport', 'Test Traditions', 'Cultural Essay'],
+    interactiveType: 'pitch-lab',
+    specs: [
+      { label: 'Match Duration', value: '30 Hours across 5 Days', note: 'Pure sporting marathon' },
+      { label: 'Deliveries Bowled', value: '2,700 Balls Potential', delta: '450 Overs' },
+      { label: 'Distance Covered', value: '48.2 km per Fielder', note: 'Total five-day load' },
+      { label: 'Test Heritage Span', value: '147 Years', note: 'Since MCG March 1877' }
+    ],
+    quote: {
+      text: 'Cricket is not merely a game; it is an afternoon tea ritual, a moral architecture, and a meditation on time itself. No other sport asks two humans to stand together for five days to discover who they really are.',
+      author: 'Neville Cardus',
+      role: 'Legendary Cricket Essayist & Critic'
+    },
+    sections: [
+      {
+        title: '1. Why Has Red-Ball Multi-Day Cricket Retained Its Cultural Sanctity Despite Franchise Commercialization?',
+        content: `**Answer:** Red-ball cricket retains its cultural sanctity because its five-day structure allows narrative tension, psychological redemption, and tactical depth to mature over thirty hours of play in a way that compressed two-hour entertainment formats cannot replicate.
+
+A T20 game is a high-octane sprint; a Test match is a five-act Russian novel. In a Test match, a player can be disgraced before lunch on Day 1, dropped at slip, dismissed for a second-ball duck, and yet return on Day 5 to bowl his country to glory.
+
+It mirrors the rhythm of life: mistakes can be redeemed, patience is rewarded, and atmospheric conditions—the morning mist, the blazing noon sun, the long evening shadows—actively participate in the drama.`,
+        keyMetric: {
+          stat: '5 days',
+          description: 'Duration over which sporting character, patience, and stamina are tested'
+        }
+      },
+      {
+        title: '2. How Did the 18th-Century English Village Commons Give Birth to the Laws of Cricket?',
+        content: `**Answer:** The Laws of Cricket were formulated in the mid-1700s by country squires and villagers on the commons of Broadhalfpenny Down and Hambledon, codifying gentlemanly conduct, the 22-yard pitch distance, and the spirit of fair play.
+
+The distance between the wickets—22 yards, or one agricultural surveyor’s chain—was derived from the ancient measurement of arable farmland.
+
+The two-stump wicket represented the hurdle gate of sheep pens, with the bail balanced across the top representing the wooden latch. When the Marylebone Cricket Club (MCC) took custodianship of the Laws at Lord’s in 1787, they preserved these pastoral measurements, ensuring that even today’s multimillion-dollar stadium spectacles remain bound to the soil of eighteenth-century England.`,
+        highlightBox: {
+          title: 'The Preamble to the Laws: The Spirit of Cricket',
+          body: 'Cricket remains one of the few global sports whose rulebook begins with a philosophical preamble: "Cricket is a game that owes much of its unique appeal to the fact that it should be played not only within its Laws but also within the Spirit of the Game."'
+        }
+      },
+      {
+        title: '3. What Physiological and Mental Resilience Does a Five-Day Test Match Demand from Elite Athletes?',
+        content: `**Answer:** A five-day Test match demands that athletes sustain peak cognitive focus and physical output across thirty playing hours, enduring 50 kilometres of running, repetitive bowling impact forces, and unrelenting mental pressure under changing weather.
+
+GPS tracking monitors reveal that an opening bowler runs between 18 and 24 kilometres per Test match, enduring up to 250 impacts of eight times their body weight on front-foot landings.
+
+Batsmen must maintain unbroken concentration through ninety overs in the field before strapping on pads to face fast bowling at 145 km/h. To survive and triumph across five gruelling days requires an alchemy of technical perfection, cardiovascular fitness, and sheer psychological obstinacy found in no other sport.`,
+        keyMetric: {
+          stat: '48.2 km',
+          description: 'Total distance traversed by an all-rounder over the course of a five-day Test match'
+        }
       }
     ]
   }
 ];
 
-export const RACE_WEEKEND_INFO = {
-  grandPrixName: 'Formula 1 Italian Grand Prix 2026',
-  circuitName: 'Autodromo Nazionale Monza',
-  circuitLength: '5.793 km',
-  raceLaps: 53,
-  lapRecord: '1:21.046 (Rubens Barrichello)',
-  currentTrackTemp: '34°C',
-  currentAirTemp: '24°C',
-  weatherStatus: 'Track Dry · Humidity 42%',
-  tyreCompounds: ['C2 Hard (White)', 'C3 Medium (Yellow)', 'C4 Soft (Red)']
+export const CATEGORIES_LIST = [
+  'All',
+  'Match Analysis',
+  'Longform Essays',
+  'Player Profiles',
+  'Cricket History',
+  'Tactics & Seamcraft'
+] as const;
+
+export const CATEGORY_DESCRIPTIONS: Record<string, string> = {
+  'Match Analysis': 'Forensic session-by-session breakdowns, fourth-innings chase psychology, DRS reviews, and captaincy declarations.',
+  'Longform Essays': 'Lyrical deep dives into the cultural soul of Test cricket, fading traditions, and the romantic solitude of the crease.',
+  'Player Profiles': 'Intimate character studies, generational rivalries, and the biomechanical secrets of modern masters and past legends.',
+  'Cricket History': 'Archival investigations into iconic tours, timeless rivalries, forgotten grounds, and the matches that shaped the modern game.',
+  'Tactics & Seamcraft': 'Masterclasses in the dark arts: wobble seam aerodynamics, reverse swing thermodynamics, field geometry, and pitch degradation.'
 };

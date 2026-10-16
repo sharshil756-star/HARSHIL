@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { ARTICLES, RACE_WEEKEND_INFO } from './data/articles';
+import { ARTICLES, JOURNAL_INFO, CATEGORY_DESCRIPTIONS } from './data/articles';
 import { Article, Category } from './types';
 
 export type RouteType = 
@@ -7,32 +7,46 @@ export type RouteType =
   | { name: 'article'; slug: string; article: Article }
   | { name: 'category'; category: Category; slug: string }
   | { name: 'saved' }
-  | { name: 'tool'; tool: 'telemetry' | 'strategy' | 'pit-stop' }
-  | { name: 'circuit-specs' }
+  | { name: 'tool'; tool: 'seam-simulator' | 'field-placer' | 'pitch-lab' }
+  | { name: 'ground-specs' }
+  | { name: 'search'; query: string }
   | { name: 'not-found' };
 
 export const CATEGORY_SLUGS: Record<string, Category> = {
   'all': 'All',
-  'race-day': 'Race Day',
-  'tech': 'Tech',
-  'strategy': 'Strategy',
-  'qualifying': 'Qualifying'
+  'match-analysis': 'Match Analysis',
+  'longform-essays': 'Longform Essays',
+  'player-profiles': 'Player Profiles',
+  'cricket-history': 'Cricket History',
+  'tactics-seamcraft': 'Tactics & Seamcraft'
 };
 
 export const CATEGORY_TO_SLUG: Record<Category, string> = {
   'All': 'all',
-  'Race Day': 'race-day',
-  'Tech': 'tech',
-  'Strategy': 'strategy',
-  'Qualifying': 'qualifying'
+  'Match Analysis': 'match-analysis',
+  'Longform Essays': 'longform-essays',
+  'Player Profiles': 'player-profiles',
+  'Cricket History': 'cricket-history',
+  'Tactics & Seamcraft': 'tactics-seamcraft'
 };
 
-export function parsePath(pathname: string): RouteType {
-  // Normalize pathname: remove trailing slash, lower case for matching
+export function parsePath(pathname: string, searchStr = ''): RouteType {
   const clean = pathname.replace(/\/+$/, '') || '/';
 
   if (clean === '/' || clean === '') {
+    const params = new URLSearchParams(searchStr);
+    const q = params.get('q');
+    if (q) {
+      return { name: 'search', query: q.trim() };
+    }
     return { name: 'home' };
+  }
+
+  // /search
+  if (clean === '/search') {
+    const params = new URLSearchParams(searchStr);
+    const q = params.get('q') || '';
+    return { name: 'search', query: q.trim() };
   }
 
   // /category/:categorySlug/:slug (Hierarchical directory tree)
@@ -74,17 +88,22 @@ export function parsePath(pathname: string): RouteType {
     return { name: 'saved' };
   }
 
-  // /circuit-specs
-  if (clean === '/circuit-specs') {
-    return { name: 'circuit-specs' };
+  // /ground-specs or /circuit-specs
+  if (clean === '/ground-specs' || clean === '/circuit-specs') {
+    return { name: 'ground-specs' };
   }
 
   // /tools/:tool
   const toolMatch = clean.match(/^\/tools\/([^/]+)$/);
   if (toolMatch) {
     const tool = toolMatch[1];
-    if (tool === 'telemetry' || tool === 'strategy' || tool === 'pit-stop') {
-      return { name: 'tool', tool };
+    if (tool === 'seam-simulator' || tool === 'field-placer' || tool === 'pitch-lab' || tool === 'telemetry' || tool === 'strategy' || tool === 'pit-stop') {
+      // Map legacy names gracefully
+      const mappedTool: 'seam-simulator' | 'field-placer' | 'pitch-lab' = 
+        tool === 'telemetry' ? 'seam-simulator' :
+        tool === 'strategy' ? 'field-placer' :
+        tool === 'pit-stop' ? 'pitch-lab' : (tool as any);
+      return { name: 'tool', tool: mappedTool };
     }
     return { name: 'not-found' };
   }
@@ -97,34 +116,41 @@ export function updatePageSeo(route: RouteType) {
   const origin = window.location.origin;
   const canonicalUrl = origin + window.location.pathname;
 
-  let title = 'Apex Grand Prix: F1 Race Weekend Hub';
-  let description = 'Explore Formula 1 engineering breakdowns, live telemetry analyses, pit stop strategies, and paddock debriefs across the entire Grand Prix race weekend.';
+  let title = 'The Willow & Seam — Cricket Journal & Longform Editorial';
+  let description = 'The definitive quarterly journal of Test cricket, longform essays, biomechanical seamcraft analysis, match forensics, and historic tours.';
   let ogType = 'website';
-  let image = origin + '/og-banner.jpg';
+  let image = origin + '/images/cricket/cricket-ball-seam.jpg';
   let jsonLd: object = {
     '@context': 'https://schema.org',
-    '@type': 'SportsEvent',
-    'name': RACE_WEEKEND_INFO.grandPrixName,
-    'location': {
-      '@type': 'Place',
-      'name': RACE_WEEKEND_INFO.circuitName
-    },
-    'description': description
+    '@type': 'Periodical',
+    'name': JOURNAL_INFO.publicationName,
+    'alternateName': JOURNAL_INFO.tagline,
+    'description': description,
+    'url': origin,
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'The Willow & Seam Editorial Guild',
+      'logo': {
+        '@type': 'ImageObject',
+        'url': origin + '/favicon.svg'
+      }
+    }
   };
 
   if (route.name === 'article') {
     const art = route.article;
-    title = `${art.title} | Apex Grand Prix F1 Hub`;
+    title = `${art.title} | The Willow & Seam`;
     description = art.metaDescription;
     ogType = 'article';
-    image = art.heroImageUrl;
+    image = origin + art.heroImageUrl;
     jsonLd = {
       '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
+      '@type': 'NewsArticle',
       'headline': art.title,
       'alternativeHeadline': art.subtitle,
-      'image': art.heroImageUrl,
-      'datePublished': '2026-09-06T15:00:00Z',
+      'image': [origin + art.heroImageUrl],
+      'datePublished': '2026-10-15T12:00:00Z',
+      'dateModified': '2026-10-15T16:00:00Z',
       'author': {
         '@type': 'Person',
         'name': art.author.name,
@@ -132,40 +158,49 @@ export function updatePageSeo(route: RouteType) {
       },
       'publisher': {
         '@type': 'Organization',
-        'name': 'Apex Grand Prix'
+        'name': 'The Willow & Seam',
+        'url': origin
       },
       'description': art.metaDescription,
+      'articleSection': art.category,
+      'keywords': art.tags.join(', '),
       'articleBody': art.sections.map(s => `${s.title}: ${s.content}`).join(' ')
     };
   } else if (route.name === 'category') {
-    title = `${route.category} Engineering & Debriefs | Apex Grand Prix`;
-    const categoryDescriptions: Record<Category, string> = {
-      'All': 'Explore Formula 1 engineering breakdowns, live telemetry analyses, pit stop strategies, and paddock debriefs across the entire Grand Prix race weekend.',
-      'Race Day': 'Read forensic Formula 1 race day debriefs, launch physics breakdowns, wheel-to-wheel battles, and full Grand Prix chequered flag recaps.',
-      'Tech': 'Explore deep technical F1 analysis covering ground-effect aerodynamics, suspension telemetry traces, power units, and 1.9-second pit stops.',
-      'Strategy': 'Discover Formula 1 race strategy models, pit window transit deltas, undercut calculations, and Virtual Safety Car tactical debriefs.',
-      'Qualifying': 'Analyze Formula 1 qualifying flying lap telemetry, micro-sector time splits, track grip evolution, and pole position shootout anatomy.'
+    title = `${route.category} — Dispatches & Analysis | The Willow & Seam`;
+    description = CATEGORY_DESCRIPTIONS[route.category] || description;
+    jsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      'name': `${route.category} Archive`,
+      'description': description,
+      'url': canonicalUrl
     };
-    description = categoryDescriptions[route.category] || categoryDescriptions['All'];
   } else if (route.name === 'saved') {
-    title = 'Saved Race Debriefs | Apex Grand Prix F1 Hub';
-    description = 'Access your personal library of saved Formula 1 race weekend debriefs, telemetry analyses, and pit strategy articles for offline reading.';
+    title = 'Reading Archive & Bookmarks | The Willow & Seam';
+    description = 'Your personal folio of saved longform cricket essays, tactical debriefs, and seamcraft investigations for offline reading.';
   } else if (route.name === 'tool') {
     const toolTitles = {
-      'telemetry': 'Telemetry Speed Trace & Pedal Input Analyzer',
-      'strategy': 'Interactive Pit Stop Window & Undercut Model',
-      'pit-stop': 'Biomechanical 1.9s Pit Stop Reflex Simulator'
+      'seam-simulator': 'Wobble Seam & Aerodynamic Deviation Laboratory',
+      'field-placer': 'Test Match Field Placement Architect & Slip Cordon Geometry',
+      'pitch-lab': 'Pitch Degradation, Lord’s Slope & Hawkeye Trajectory Inspector'
     };
     const toolDescriptions = {
-      'telemetry': 'Analyze live Formula 1 velocity traces, braking markers, and throttle pedal inputs comparing two cars through the 350 km/h Turn 1 braking zone.',
-      'strategy': 'Simulate 53-lap Formula 1 race strategies, compound degradation curves, undercut crossover points, and Virtual Safety Car pit time discounts.',
-      'pit-stop': 'Test your biomechanical reflexes in milliseconds against Formula 1 wheel gunners executing the world-record 1.80-second pit stop.'
+      'seam-simulator': 'Simulate seam scramble rates, boundary layer thermodynamics, air-swing angles, and deck nip-back kinematics at 85 to 92 mph.',
+      'field-placer': 'Architect precision Test match field settings: slip cordons, leg gully traps, short leg catchers, and sweeping boundaries.',
+      'pitch-lab': 'Analyze Day 1 to Day 5 pitch wear, footmark craters, the 8-foot Lord’s slope gradient, and humidity thresholds.'
     };
-    title = `${toolTitles[route.tool]} | Apex Grand Prix`;
+    title = `${toolTitles[route.tool]} | The Willow & Seam Tools`;
     description = toolDescriptions[route.tool];
-  } else if (route.name === 'circuit-specs') {
-    title = `${RACE_WEEKEND_INFO.circuitName} Circuit Specifications | Apex Grand Prix`;
-    description = 'Review official Autodromo Nazionale Monza circuit specs, 53-lap race distance, Pirelli tyre allocations, track records, and weather telemetry.';
+  } else if (route.name === 'ground-specs') {
+    title = 'Cathedrals of the Game: Ground Topography & Pitch Soil Lore | The Willow & Seam';
+    description = 'Explore architectural blueprints, soil clay compositions, and historic gradients of Lord’s, the MCG, Eden Gardens, Sydney Cricket Ground, and The Oval.';
+  } else if (route.name === 'search') {
+    title = `Search Folio: "${route.query}" | The Willow & Seam`;
+    description = `Search results for "${route.query}" across the archives of The Willow & Seam cricket journal.`;
+  } else if (route.name === 'not-found') {
+    title = 'Innings Terminated (404) | The Willow & Seam';
+    description = 'The requested cricket essay or dispatch could not be found in our archives.';
   }
 
   // Apply to document
@@ -182,12 +217,18 @@ export function updatePageSeo(route: RouteType) {
   const ogDesc = document.querySelector('meta[property="og:description"]');
   if (ogDesc) ogDesc.setAttribute('content', description);
 
+  const ogImg = document.querySelector('meta[property="og:image"]');
+  if (ogImg) ogImg.setAttribute('content', image);
+
   // Twitter cards
   const twTitle = document.querySelector('meta[name="twitter:title"]');
   if (twTitle) twTitle.setAttribute('content', title);
 
   const twDesc = document.querySelector('meta[name="twitter:description"]');
   if (twDesc) twDesc.setAttribute('content', description);
+
+  const twImg = document.querySelector('meta[name="twitter:image"]');
+  if (twImg) twImg.setAttribute('content', image);
 
   const ogUrl = document.querySelector('meta[property="og:url"]');
   if (ogUrl) {
@@ -224,33 +265,41 @@ export function updatePageSeo(route: RouteType) {
 
 export function useRouter() {
   const [currentPath, setCurrentPath] = useState(() => window.location.pathname);
+  const [currentSearch, setCurrentSearch] = useState(() => window.location.search);
 
   useEffect(() => {
     const handlePopState = () => {
       setCurrentPath(window.location.pathname);
+      setCurrentSearch(window.location.search);
     };
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  const route = parsePath(currentPath);
+  const route = parsePath(currentPath, currentSearch);
 
   useEffect(() => {
     updatePageSeo(route);
   }, [route]);
 
   const navigate = useCallback((to: string) => {
-    if (window.location.pathname !== to) {
+    const [pathPart, searchPart] = to.split('?');
+    const newSearch = searchPart ? `?${searchPart}` : '';
+    if (window.location.pathname !== pathPart || window.location.search !== newSearch) {
       window.history.pushState({}, '', to);
-      setCurrentPath(to);
+      setCurrentPath(pathPart);
+      setCurrentSearch(newSearch);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, []);
 
   const replace = useCallback((to: string) => {
+    const [pathPart, searchPart] = to.split('?');
+    const newSearch = searchPart ? `?${searchPart}` : '';
     window.history.replaceState({}, '', to);
-    setCurrentPath(to);
+    setCurrentPath(pathPart);
+    setCurrentSearch(newSearch);
   }, []);
 
   return { currentPath, route, navigate, replace };

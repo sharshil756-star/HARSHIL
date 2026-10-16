@@ -1,6 +1,6 @@
 {
-  "name": "Apex Grand Prix: F1 Race Weekend Hub",
-  "description": "Comprehensive Formula 1 race weekend engineering breakdowns, telemetry analyses, strategy debriefs, and Grand Prix paddock coverage.",
+  "name": "The Willow & Seam — Cricket Journal & Longform Editorial",
+  "description": "The definitive quarterly journal of Test cricket, longform essays, biomechanical seamcraft analysis, match forensics, and historic tours.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

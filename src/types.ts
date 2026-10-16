@@ -1,12 +1,18 @@
-export type Category = 'All' | 'Race Day' | 'Tech' | 'Strategy' | 'Qualifying';
+export type Category = 
+  | 'All' 
+  | 'Match Analysis' 
+  | 'Longform Essays' 
+  | 'Player Profiles' 
+  | 'Cricket History' 
+  | 'Tactics & Seamcraft';
 
-export interface TelemetryData {
-  distance: number; // meters from sector start
-  speedCarA: number; // km/h
-  speedCarB: number; // km/h
-  gearCarA: number;
-  throttleCarA: number; // 0-100%
-  brakeCarA: number; // 0-100%
+export interface HawkeyeTrajectoryData {
+  distance: number; // meters from bowler release
+  ballHeight: number; // meters above ground
+  lateralDeviation: number; // centimeters from stumps center line
+  velocity: number; // km/h
+  seamAngle: number; // degrees tilt
+  isPitched: boolean;
 }
 
 export interface TechnicalSpec {
@@ -35,10 +41,21 @@ export interface Article {
   slug: string;
   title: string;
   subtitle: string;
-  category: 'Race Day' | 'Tech' | 'Strategy' | 'Qualifying';
-  sessionCode: 'FP1/FP2' | 'FP3' | 'QUALIFYING' | 'GRID' | 'RACE START' | 'PIT STOP' | 'SAFETY CAR' | 'RACE BATTLE' | 'CHEQUERED FLAG' | 'SCRUTINEERING';
+  category: 'Match Analysis' | 'Longform Essays' | 'Player Profiles' | 'Cricket History' | 'Tactics & Seamcraft';
+  sessionCode: 
+    | 'TEST TACTICS' 
+    | 'ICONIC GROUNDS' 
+    | 'DAY 5 DRAMA' 
+    | 'FIELD ARCHITECTURE' 
+    | 'CRICKET ESSAYS' 
+    | 'SEAMCRAFT' 
+    | 'BATTING CRAFT' 
+    | 'LEGENDARY MATCHES' 
+    | 'BOWLING KINEMATICS' 
+    | 'PASTORAL HERITAGE';
   readTime: string;
   publishedDate: string;
+  edition: string; // e.g. 'Vol. XII · Issue 44'
   author: {
     name: string;
     role: string;
@@ -58,5 +75,24 @@ export interface Article {
     author: string;
     role: string;
   };
-  interactiveType?: 'telemetry' | 'strategy' | 'pitstop';
+  interactiveType?: 'seam-simulator' | 'field-placer' | 'pitch-lab';
+}
+
+export interface FieldPlacementPosition {
+  id: string;
+  name: string;
+  role: 'Attacking' | 'Defensive' | 'Catching' | 'Boundary';
+  x: number; // percentage coordinates on circular ground (0-100)
+  y: number; // percentage coordinates on circular ground (0-100)
+  description: string;
+}
+
+export interface TestMatchCondition {
+  ground: string;
+  pitchType: string;
+  weather: string;
+  humidity: string;
+  overhead: string;
+  dewFactor: string;
+  tossAdvantage: string;
 }
